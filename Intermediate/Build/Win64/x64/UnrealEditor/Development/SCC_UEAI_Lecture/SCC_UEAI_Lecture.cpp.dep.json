@@ -1,0 +1,14 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "e:\\projects\\scc_ueai_lecture\\source\\scc_ueai_lecture\\scc_ueai_lecture.cpp",
+        "ProvidedModule": "",
+        "PCH": "e:\\projects\\scc_ueai_lecture\\intermediate\\build\\win64\\x64\\scc_ueai_lectureeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "e:\\projects\\scc_ueai_lecture\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\scc_ueai_lecture\\definitions.scc_ueai_lecture.h",
+            "e:\\projects\\scc_ueai_lecture\\source\\scc_ueai_lecture\\scc_ueai_lecture.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

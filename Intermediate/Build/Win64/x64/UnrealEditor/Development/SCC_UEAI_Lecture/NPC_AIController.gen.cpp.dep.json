@@ -1,0 +1,28 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "e:\\projects\\scc_ueai_lecture\\intermediate\\build\\win64\\unrealeditor\\inc\\scc_ueai_lecture\\uht\\npc_aicontroller.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "e:\\projects\\scc_ueai_lecture\\intermediate\\build\\win64\\x64\\scc_ueai_lectureeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "e:\\projects\\scc_ueai_lecture\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\scc_ueai_lecture\\definitions.scc_ueai_lecture.h",
+            "e:\\projects\\scc_ueai_lecture\\source\\scc_ueai_lecture\\npc_aicontroller.h",
+            "e:\\epicgames\\ue_5.5\\engine\\source\\runtime\\aimodule\\classes\\aicontroller.h",
+            "e:\\epicgames\\ue_5.5\\engine\\source\\runtime\\aimodule\\classes\\aitypes.h",
+            "e:\\epicgames\\ue_5.5\\engine\\source\\runtime\\navigationsystem\\public\\navigationsystemtypes.h",
+            "e:\\epicgames\\ue_5.5\\engine\\source\\runtime\\engine\\classes\\ai\\navigation\\navagentselector.h",
+            "e:\\epicgames\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\navagentselector.generated.h",
+            "e:\\epicgames\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\aimodule\\uht\\aitypes.generated.h",
+            "e:\\epicgames\\ue_5.5\\engine\\source\\runtime\\aimodule\\classes\\perception\\aiperceptionlistenerinterface.h",
+            "e:\\epicgames\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\aimodule\\uht\\aiperceptionlistenerinterface.generated.h",
+            "e:\\epicgames\\ue_5.5\\engine\\source\\runtime\\aimodule\\classes\\genericteamagentinterface.h",
+            "e:\\epicgames\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\aimodule\\uht\\genericteamagentinterface.generated.h",
+            "e:\\epicgames\\ue_5.5\\engine\\source\\runtime\\engine\\public\\visuallogger\\visualloggerdebugsnapshotinterface.h",
+            "e:\\epicgames\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\visualloggerdebugsnapshotinterface.generated.h",
+            "e:\\epicgames\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\aimodule\\uht\\aicontroller.generated.h",
+            "e:\\projects\\scc_ueai_lecture\\intermediate\\build\\win64\\unrealeditor\\inc\\scc_ueai_lecture\\uht\\npc_aicontroller.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

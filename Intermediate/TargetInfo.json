@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "SCC_UEAI_Lecture",
+			"Path": "..\\Source\\SCC_UEAI_Lecture.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "SCC_UEAI_LectureEditor",
+			"Path": "..\\Source\\SCC_UEAI_LectureEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
