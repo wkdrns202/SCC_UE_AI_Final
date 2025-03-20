@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\SCC_UEAI_Lecture\\Intermediate\\Build\\BuildRulesProjects\\SCC_UEAI_LectureModuleRules\\SCC_UEAI_LectureModuleRules.csproj": {}
+    "D:\\Git\\SCC_UE_AI_Final\\SCC_UE_AI_Final\\Intermediate\\Build\\BuildRulesProjects\\SCC_UEAI_LectureModuleRules\\SCC_UEAI_LectureModuleRules.csproj": {}
   },
   "projects": {
     "D:\\EpicGames\\UE_5.5\\Engine\\Intermediate\\Build\\BuildRulesProjects\\MarketplaceRules\\MarketplaceRules.csproj": {
@@ -1234,14 +1234,14 @@
         }
       }
     },
-    "D:\\Projects\\SCC_UEAI_Lecture\\Intermediate\\Build\\BuildRulesProjects\\SCC_UEAI_LectureModuleRules\\SCC_UEAI_LectureModuleRules.csproj": {
+    "D:\\Git\\SCC_UE_AI_Final\\SCC_UE_AI_Final\\Intermediate\\Build\\BuildRulesProjects\\SCC_UEAI_LectureModuleRules\\SCC_UEAI_LectureModuleRules.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\SCC_UEAI_Lecture\\Intermediate\\Build\\BuildRulesProjects\\SCC_UEAI_LectureModuleRules\\SCC_UEAI_LectureModuleRules.csproj",
+        "projectUniqueName": "D:\\Git\\SCC_UE_AI_Final\\SCC_UE_AI_Final\\Intermediate\\Build\\BuildRulesProjects\\SCC_UEAI_LectureModuleRules\\SCC_UEAI_LectureModuleRules.csproj",
         "projectName": "SCC_UEAI_LectureModuleRules",
-        "projectPath": "D:\\Projects\\SCC_UEAI_Lecture\\Intermediate\\Build\\BuildRulesProjects\\SCC_UEAI_LectureModuleRules\\SCC_UEAI_LectureModuleRules.csproj",
+        "projectPath": "D:\\Git\\SCC_UE_AI_Final\\SCC_UE_AI_Final\\Intermediate\\Build\\BuildRulesProjects\\SCC_UEAI_LectureModuleRules\\SCC_UEAI_LectureModuleRules.csproj",
         "packagesPath": "C:\\Users\\Polymath\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\SCC_UEAI_Lecture\\Intermediate\\Build\\BuildRulesProjects\\SCC_UEAI_LectureModuleRules\\obj\\",
+        "outputPath": "D:\\Git\\SCC_UE_AI_Final\\SCC_UE_AI_Final\\Intermediate\\Build\\BuildRulesProjects\\SCC_UEAI_LectureModuleRules\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

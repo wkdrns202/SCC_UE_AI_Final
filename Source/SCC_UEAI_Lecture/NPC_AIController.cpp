@@ -2,13 +2,13 @@
 #include "Engine/TargetPoint.h"
 #include "Kismet/GameplayStatics.h"
 
-// ºí·¢º¸µå Å° Á¤ÀÇ
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å° ï¿½ï¿½ï¿½ï¿½
 const FName ANPC_AIController::SearchLocationKey = "SearchLocation";
 
 ANPC_AIController::ANPC_AIController()
 {
     bPatrolPointReady = false;
-    bFoundTargetPoint = false;  // ÃÊ±âÈ­
+    bFoundTargetPoint = false;  // ï¿½Ê±ï¿½È­
     PrimaryActorTick.bCanEverTick = true;
 }
 
@@ -17,9 +17,9 @@ void ANPC_AIController::BeginPlay()
     Super::BeginPlay();
     InitializePatrolPoint();
     UBlackboardComponent* BB = GetBlackboardComponent();
-    if (BB && bFoundTargetPoint)  // Æ÷ÀÎÅÍ°¡ ¾Æ´Ñ ºÒ¸®¾ð °ªÀ¸·Î È®ÀÎ
+    if (BB && bFoundTargetPoint)  // ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Æ´ï¿½ ï¿½Ò¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
     {
-        BB->SetValueAsVector(SearchLocationKey, FoundTargetPoint);  // °ª Å¸ÀÔÀÌ¹Ç·Î * ¿¬»êÀÚ Á¦°Å
+        BB->SetValueAsVector(SearchLocationKey, FoundTargetPoint);  // ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½Ì¹Ç·ï¿½ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 }
 
@@ -33,7 +33,7 @@ void ANPC_AIController::Tick(float DeltaTime)
         float Distance = FVector::Dist(ControlledPawn->GetActorLocation(), FoundTargetPoint);
         if (Distance <= 100.0f)
         {
-            // ÀÌ¹Ì °¡±î¿î »óÅÂ¶ó¸é DestroyLogic ½ÇÇà
+            // ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¶ï¿½ï¿½ DestroyLogic ï¿½ï¿½ï¿½ï¿½
             FTimerHandle DestroyTimerHandle;
             GetWorldTimerManager().SetTimer(DestroyTimerHandle, this, &ANPC_AIController::DestroyLogic, 3.0f, false);
         }
@@ -46,8 +46,8 @@ void ANPC_AIController::InitializePatrolPoint()
     bool bFound = (TargetPointActor != nullptr);
     if (bFound && TargetPointActor)
     {
-        FoundTargetPoint = TargetPointActor->GetActorLocation();  // °ª Å¸ÀÔ¿¡ Á÷Á¢ ÇÒ´ç
-        bFoundTargetPoint = true;  // Å¸°Ù Æ÷ÀÎÆ®¸¦ Ã£¾ÒÀ½À» Ç¥½Ã
+        FoundTargetPoint = TargetPointActor->GetActorLocation();  // ï¿½ï¿½ Å¸ï¿½Ô¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò´ï¿½
+        bFoundTargetPoint = true;  // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½
     }
     UE_LOG(LogTemp, Warning, TEXT("PatrolPoint Collected"));
     bPatrolPointReady = true;
@@ -71,6 +71,6 @@ void ANPC_AIController::DestroyLogic()
     APawn* ControlledPawn = GetPawn();
     if (ControlledPawn)
     {
-        ControlledPawn->Destroy();  // ÆùÀ» »èÁ¦
+        ControlledPawn->Destroy();  // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 }
