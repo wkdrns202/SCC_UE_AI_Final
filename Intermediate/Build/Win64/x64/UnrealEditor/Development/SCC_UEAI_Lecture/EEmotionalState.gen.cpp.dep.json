@@ -1,0 +1,15 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\git\\scc_ue_ai_final\\scc_ue_ai_final\\intermediate\\build\\win64\\unrealeditor\\inc\\scc_ueai_lecture\\uht\\eemotionalstate.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\git\\scc_ue_ai_final\\scc_ue_ai_final\\intermediate\\build\\win64\\x64\\scc_ueai_lectureeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "Includes": [
+            "d:\\git\\scc_ue_ai_final\\scc_ue_ai_final\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\scc_ueai_lecture\\definitions.scc_ueai_lecture.h",
+            "d:\\git\\scc_ue_ai_final\\scc_ue_ai_final\\source\\scc_ueai_lecture\\public\\eemotionalstate.h",
+            "d:\\git\\scc_ue_ai_final\\scc_ue_ai_final\\intermediate\\build\\win64\\unrealeditor\\inc\\scc_ueai_lecture\\uht\\eemotionalstate.generated.h"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}

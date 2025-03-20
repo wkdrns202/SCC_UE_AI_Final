@@ -19,9 +19,7 @@ AIMODULE_API UClass* Z_Construct_UClass_UBehaviorTreeComponent_NoRegister();
 AIMODULE_API UClass* Z_Construct_UClass_UBlackboardComponent_NoRegister();
 AIMODULE_API UClass* Z_Construct_UClass_UPawnSensingComponent_NoRegister();
 AIMODULE_API UScriptStruct* Z_Construct_UScriptStruct_FAIStimulus();
-COREUOBJECT_API UScriptStruct* Z_Construct_UScriptStruct_FVector();
 ENGINE_API UClass* Z_Construct_UClass_AActor_NoRegister();
-ENGINE_API UClass* Z_Construct_UClass_APawn_NoRegister();
 SCC_UEAI_LECTURE_API UClass* Z_Construct_UClass_ACoolGuyAIController();
 SCC_UEAI_LECTURE_API UClass* Z_Construct_UClass_ACoolGuyAIController_NoRegister();
 SCC_UEAI_LECTURE_API UEnum* Z_Construct_UEnum_SCC_UEAI_Lecture_ESearchStateInternal();
@@ -49,16 +47,14 @@ struct Z_Construct_UEnum_SCC_UEAI_Lecture_ESearchStateInternal_Statics
 		{ "BlueprintType", "true" },
 		{ "Chasing.Name", "ESearchStateInternal::Chasing" },
 		{ "Idle.Name", "ESearchStateInternal::Idle" },
-		{ "Investigating.Name", "ESearchStateInternal::Investigating" },
 		{ "ModuleRelativePath", "Public/CoolGuyAIController.h" },
-		{ "Searching.Name", "ESearchStateInternal::Searching" },
+		{ "Suspicious.Name", "ESearchStateInternal::Suspicious" },
 	};
 #endif // WITH_METADATA
 	static constexpr UECodeGen_Private::FEnumeratorParam Enumerators[] = {
 		{ "ESearchStateInternal::Idle", (int64)ESearchStateInternal::Idle },
-		{ "ESearchStateInternal::Investigating", (int64)ESearchStateInternal::Investigating },
+		{ "ESearchStateInternal::Suspicious", (int64)ESearchStateInternal::Suspicious },
 		{ "ESearchStateInternal::Chasing", (int64)ESearchStateInternal::Chasing },
-		{ "ESearchStateInternal::Searching", (int64)ESearchStateInternal::Searching },
 	};
 	static const UECodeGen_Private::FEnumParams EnumParams;
 };
@@ -83,61 +79,6 @@ UEnum* Z_Construct_UEnum_SCC_UEAI_Lecture_ESearchStateInternal()
 	return Z_Registration_Info_UEnum_ESearchStateInternal.InnerSingleton;
 }
 // End Enum ESearchStateInternal
-
-// Begin Class ACoolGuyAIController Function OnHearNoise
-struct Z_Construct_UFunction_ACoolGuyAIController_OnHearNoise_Statics
-{
-	struct CoolGuyAIController_eventOnHearNoise_Parms
-	{
-		APawn* PawnInstigator;
-		FVector Location;
-		float Volume;
-	};
-#if WITH_METADATA
-	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Public/CoolGuyAIController.h" },
-	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_Location_MetaData[] = {
-		{ "NativeConst", "" },
-	};
-#endif // WITH_METADATA
-	static const UECodeGen_Private::FObjectPropertyParams NewProp_PawnInstigator;
-	static const UECodeGen_Private::FStructPropertyParams NewProp_Location;
-	static const UECodeGen_Private::FFloatPropertyParams NewProp_Volume;
-	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
-	static const UECodeGen_Private::FFunctionParams FuncParams;
-};
-const UECodeGen_Private::FObjectPropertyParams Z_Construct_UFunction_ACoolGuyAIController_OnHearNoise_Statics::NewProp_PawnInstigator = { "PawnInstigator", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(CoolGuyAIController_eventOnHearNoise_Parms, PawnInstigator), Z_Construct_UClass_APawn_NoRegister, METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FStructPropertyParams Z_Construct_UFunction_ACoolGuyAIController_OnHearNoise_Statics::NewProp_Location = { "Location", nullptr, (EPropertyFlags)0x0010000008000182, UECodeGen_Private::EPropertyGenFlags::Struct, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(CoolGuyAIController_eventOnHearNoise_Parms, Location), Z_Construct_UScriptStruct_FVector, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_Location_MetaData), NewProp_Location_MetaData) };
-const UECodeGen_Private::FFloatPropertyParams Z_Construct_UFunction_ACoolGuyAIController_OnHearNoise_Statics::NewProp_Volume = { "Volume", nullptr, (EPropertyFlags)0x0010000000000080, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(CoolGuyAIController_eventOnHearNoise_Parms, Volume), METADATA_PARAMS(0, nullptr) };
-const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UFunction_ACoolGuyAIController_OnHearNoise_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACoolGuyAIController_OnHearNoise_Statics::NewProp_PawnInstigator,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACoolGuyAIController_OnHearNoise_Statics::NewProp_Location,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UFunction_ACoolGuyAIController_OnHearNoise_Statics::NewProp_Volume,
-};
-static_assert(UE_ARRAY_COUNT(Z_Construct_UFunction_ACoolGuyAIController_OnHearNoise_Statics::PropPointers) < 2048);
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ACoolGuyAIController_OnHearNoise_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ACoolGuyAIController, nullptr, "OnHearNoise", nullptr, nullptr, Z_Construct_UFunction_ACoolGuyAIController_OnHearNoise_Statics::PropPointers, UE_ARRAY_COUNT(Z_Construct_UFunction_ACoolGuyAIController_OnHearNoise_Statics::PropPointers), sizeof(Z_Construct_UFunction_ACoolGuyAIController_OnHearNoise_Statics::CoolGuyAIController_eventOnHearNoise_Parms), RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00C80401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ACoolGuyAIController_OnHearNoise_Statics::Function_MetaDataParams), Z_Construct_UFunction_ACoolGuyAIController_OnHearNoise_Statics::Function_MetaDataParams) };
-static_assert(sizeof(Z_Construct_UFunction_ACoolGuyAIController_OnHearNoise_Statics::CoolGuyAIController_eventOnHearNoise_Parms) < MAX_uint16);
-UFunction* Z_Construct_UFunction_ACoolGuyAIController_OnHearNoise()
-{
-	static UFunction* ReturnFunction = nullptr;
-	if (!ReturnFunction)
-	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ACoolGuyAIController_OnHearNoise_Statics::FuncParams);
-	}
-	return ReturnFunction;
-}
-DEFINE_FUNCTION(ACoolGuyAIController::execOnHearNoise)
-{
-	P_GET_OBJECT(APawn,Z_Param_PawnInstigator);
-	P_GET_STRUCT_REF(FVector,Z_Param_Out_Location);
-	P_GET_PROPERTY(FFloatProperty,Z_Param_Volume);
-	P_FINISH;
-	P_NATIVE_BEGIN;
-	P_THIS->OnHearNoise(Z_Param_PawnInstigator,Z_Param_Out_Location,Z_Param_Volume);
-	P_NATIVE_END;
-}
-// End Class ACoolGuyAIController Function OnHearNoise
 
 // Begin Class ACoolGuyAIController Function OnTargetPerceptionUpdated
 struct Z_Construct_UFunction_ACoolGuyAIController_OnTargetPerceptionUpdated_Statics
@@ -315,7 +256,6 @@ void ACoolGuyAIController::StaticRegisterNativesACoolGuyAIController()
 {
 	UClass* Class = ACoolGuyAIController::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
-		{ "OnHearNoise", &ACoolGuyAIController::execOnHearNoise },
 		{ "OnTargetPerceptionUpdated", &ACoolGuyAIController::execOnTargetPerceptionUpdated },
 		{ "StartChasingPlayer", &ACoolGuyAIController::execStartChasingPlayer },
 		{ "StartSearchingLastLocation", &ACoolGuyAIController::execStartSearchingLastLocation },
@@ -392,7 +332,6 @@ struct Z_Construct_UClass_ACoolGuyAIController_Statics
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
-		{ &Z_Construct_UFunction_ACoolGuyAIController_OnHearNoise, "OnHearNoise" }, // 1506658808
 		{ &Z_Construct_UFunction_ACoolGuyAIController_OnTargetPerceptionUpdated, "OnTargetPerceptionUpdated" }, // 1631510856
 		{ &Z_Construct_UFunction_ACoolGuyAIController_StartChasingPlayer, "StartChasingPlayer" }, // 2617533188
 		{ &Z_Construct_UFunction_ACoolGuyAIController_StartSearchingLastLocation, "StartSearchingLastLocation" }, // 4184357344
@@ -456,18 +395,18 @@ ACoolGuyAIController::~ACoolGuyAIController() {}
 // End Class ACoolGuyAIController
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_Statics
+struct Z_CompiledInDeferFile_FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_Statics
 {
 	static constexpr FEnumRegisterCompiledInInfo EnumInfo[] = {
-		{ ESearchStateInternal_StaticEnum, TEXT("ESearchStateInternal"), &Z_Registration_Info_UEnum_ESearchStateInternal, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 551807236U) },
+		{ ESearchStateInternal_StaticEnum, TEXT("ESearchStateInternal"), &Z_Registration_Info_UEnum_ESearchStateInternal, CONSTRUCT_RELOAD_VERSION_INFO(FEnumReloadVersionInfo, 2717933880U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ACoolGuyAIController, ACoolGuyAIController::StaticClass, TEXT("ACoolGuyAIController"), &Z_Registration_Info_UClass_ACoolGuyAIController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACoolGuyAIController), 1454751638U) },
+		{ Z_Construct_UClass_ACoolGuyAIController, ACoolGuyAIController::StaticClass, TEXT("ACoolGuyAIController"), &Z_Registration_Info_UClass_ACoolGuyAIController, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ACoolGuyAIController), 2103460941U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_184441415(TEXT("/Script/SCC_UEAI_Lecture"),
-	Z_CompiledInDeferFile_FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_2989583369(TEXT("/Script/SCC_UEAI_Lecture"),
+	Z_CompiledInDeferFile_FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_Statics::ClassInfo),
 	nullptr, 0,
-	Z_CompiledInDeferFile_FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_Statics::EnumInfo));
+	Z_CompiledInDeferFile_FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_Statics::EnumInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_Statics::EnumInfo));
 // End Registration
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SCC_UEAI_LectureModuleRules")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Development")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a56dd01c992e90213f04e7e5c5ecd2d04628af33")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2a9f64abceb0a0876b1b19ad2661eb3ccaae93f9")]
 [assembly: System.Reflection.AssemblyProductAttribute("SCC_UEAI_LectureModuleRules")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SCC_UEAI_LectureModuleRules")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

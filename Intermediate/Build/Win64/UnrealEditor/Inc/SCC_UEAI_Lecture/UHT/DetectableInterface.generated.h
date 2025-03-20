@@ -16,7 +16,7 @@ class APawn;
 #endif
 #define SCC_UEAI_LECTURE_DetectableInterface_generated_h
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_11_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_11_RPC_WRAPPERS_NO_PURE_DECLS \
 	virtual void CapturedByAI_Implementation() {}; \
 	virtual bool CanMakeNoise_Implementation() const { return false; }; \
 	virtual bool CanBeDetected_Implementation() const { return false; }; \
@@ -25,8 +25,8 @@ class APawn;
 	DECLARE_FUNCTION(execCanBeDetected);
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_11_CALLBACK_WRAPPERS
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_11_ENHANCED_CONSTRUCTORS \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_11_CALLBACK_WRAPPERS
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_11_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	SCC_UEAI_LECTURE_API UDetectableInterface(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 private: \
@@ -40,7 +40,7 @@ public: \
 	SCC_UEAI_LECTURE_API virtual ~UDetectableInterface();
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_11_GENERATED_UINTERFACE_BODY() \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_11_GENERATED_UINTERFACE_BODY() \
 private: \
 	static void StaticRegisterNativesUDetectableInterface(); \
 	friend struct Z_Construct_UClass_UDetectableInterface_Statics; \
@@ -49,15 +49,15 @@ public: \
 	DECLARE_SERIALIZER(UDetectableInterface)
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_11_GENERATED_BODY \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_11_GENERATED_BODY \
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_11_GENERATED_UINTERFACE_BODY() \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_11_ENHANCED_CONSTRUCTORS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_11_GENERATED_UINTERFACE_BODY() \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_11_ENHANCED_CONSTRUCTORS \
 private: \
 	PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_11_INCLASS_IINTERFACE_NO_PURE_DECLS \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_11_INCLASS_IINTERFACE_NO_PURE_DECLS \
 protected: \
 	virtual ~IDetectableInterface() {} \
 public: \
@@ -69,20 +69,20 @@ public: \
 	virtual UObject* _getUObject() const { return nullptr; }
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_8_PROLOG
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_17_GENERATED_BODY \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_8_PROLOG
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_17_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_11_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_11_CALLBACK_WRAPPERS \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_11_INCLASS_IINTERFACE_NO_PURE_DECLS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_11_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_11_CALLBACK_WRAPPERS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_11_INCLASS_IINTERFACE_NO_PURE_DECLS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
 template<> SCC_UEAI_LECTURE_API UClass* StaticClass<class UDetectableInterface>();
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_38_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_38_RPC_WRAPPERS_NO_PURE_DECLS \
 	virtual int32 ReportCurrentLives_Implementation() { return 0; }; \
 	virtual void ReportGetCoin_Implementation(int32 type) {}; \
 	virtual void ReportAlertLevelChange_Implementation(AActor* Guard, uint8 NewAlertLevel) {}; \
@@ -95,8 +95,8 @@ template<> SCC_UEAI_LECTURE_API UClass* StaticClass<class UDetectableInterface>(
 	DECLARE_FUNCTION(execReportPlayerCapture);
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_38_CALLBACK_WRAPPERS
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_38_ENHANCED_CONSTRUCTORS \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_38_CALLBACK_WRAPPERS
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_38_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	SCC_UEAI_LECTURE_API UGameRulesInterface(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 private: \
@@ -110,7 +110,7 @@ public: \
 	SCC_UEAI_LECTURE_API virtual ~UGameRulesInterface();
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_38_GENERATED_UINTERFACE_BODY() \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_38_GENERATED_UINTERFACE_BODY() \
 private: \
 	static void StaticRegisterNativesUGameRulesInterface(); \
 	friend struct Z_Construct_UClass_UGameRulesInterface_Statics; \
@@ -119,15 +119,15 @@ public: \
 	DECLARE_SERIALIZER(UGameRulesInterface)
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_38_GENERATED_BODY \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_38_GENERATED_BODY \
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_38_GENERATED_UINTERFACE_BODY() \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_38_ENHANCED_CONSTRUCTORS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_38_GENERATED_UINTERFACE_BODY() \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_38_ENHANCED_CONSTRUCTORS \
 private: \
 	PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_38_INCLASS_IINTERFACE_NO_PURE_DECLS \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_38_INCLASS_IINTERFACE_NO_PURE_DECLS \
 protected: \
 	virtual ~IGameRulesInterface() {} \
 public: \
@@ -141,20 +141,20 @@ public: \
 	virtual UObject* _getUObject() const { return nullptr; }
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_35_PROLOG
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_43_GENERATED_BODY \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_35_PROLOG
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_43_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_38_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_38_CALLBACK_WRAPPERS \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_38_INCLASS_IINTERFACE_NO_PURE_DECLS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_38_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_38_CALLBACK_WRAPPERS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_38_INCLASS_IINTERFACE_NO_PURE_DECLS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
 template<> SCC_UEAI_LECTURE_API UClass* StaticClass<class UGameRulesInterface>();
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_70_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_70_RPC_WRAPPERS_NO_PURE_DECLS \
 	virtual void Persuaded_Implementation() {}; \
 	virtual void ReceiveAlert_Implementation(FVector const& Location, uint8 AlertLevel, AActor* AlertSource) {}; \
 	virtual APawn* GetTargetPlayer_Implementation() const { return NULL; }; \
@@ -167,8 +167,8 @@ template<> SCC_UEAI_LECTURE_API UClass* StaticClass<class UGameRulesInterface>()
 	DECLARE_FUNCTION(execGetLastKnownPlayerLocation);
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_70_CALLBACK_WRAPPERS
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_70_ENHANCED_CONSTRUCTORS \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_70_CALLBACK_WRAPPERS
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_70_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	SCC_UEAI_LECTURE_API UGuardInterface(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 private: \
@@ -182,7 +182,7 @@ public: \
 	SCC_UEAI_LECTURE_API virtual ~UGuardInterface();
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_70_GENERATED_UINTERFACE_BODY() \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_70_GENERATED_UINTERFACE_BODY() \
 private: \
 	static void StaticRegisterNativesUGuardInterface(); \
 	friend struct Z_Construct_UClass_UGuardInterface_Statics; \
@@ -191,15 +191,15 @@ public: \
 	DECLARE_SERIALIZER(UGuardInterface)
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_70_GENERATED_BODY \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_70_GENERATED_BODY \
 	PRAGMA_DISABLE_DEPRECATION_WARNINGS \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_70_GENERATED_UINTERFACE_BODY() \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_70_ENHANCED_CONSTRUCTORS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_70_GENERATED_UINTERFACE_BODY() \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_70_ENHANCED_CONSTRUCTORS \
 private: \
 	PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_70_INCLASS_IINTERFACE_NO_PURE_DECLS \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_70_INCLASS_IINTERFACE_NO_PURE_DECLS \
 protected: \
 	virtual ~IGuardInterface() {} \
 public: \
@@ -213,13 +213,13 @@ public: \
 	virtual UObject* _getUObject() const { return nullptr; }
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_67_PROLOG
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_75_GENERATED_BODY \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_67_PROLOG
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_75_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_70_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_70_CALLBACK_WRAPPERS \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_70_INCLASS_IINTERFACE_NO_PURE_DECLS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_70_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_70_CALLBACK_WRAPPERS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h_70_INCLASS_IINTERFACE_NO_PURE_DECLS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -227,7 +227,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> SCC_UEAI_LECTURE_API UClass* StaticClass<class UGuardInterface>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h
+#define CURRENT_FILE_ID FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_DetectableInterface_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

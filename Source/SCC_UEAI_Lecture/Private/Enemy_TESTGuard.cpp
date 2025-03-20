@@ -9,10 +9,10 @@ AEnemy_TESTGuard::AEnemy_TESTGuard()
 
 void AEnemy_TESTGuard::FindTargetPoints()
 {
-	// Å¸°Ù Æ÷ÀÎÆ®°¡ ¼³Á¤µÇ¾î ÀÖÁö ¾ÊÀº °æ¿ì ÀÚµ¿À¸·Î Ã£±â
+	// Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½
 	if (!Target || !Target2)
 	{
-		// ¿¡µðÅÍ¿¡ ¼³Á¤ÇØµÐ Tag ³×ÀÓ°ú ÀÏÄ¡ÇÏ´Â Target Points ¼öÁý.
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½ Tag ï¿½ï¿½ï¿½Ó°ï¿½ ï¿½ï¿½Ä¡ï¿½Ï´ï¿½ Target Points ï¿½ï¿½ï¿½ï¿½.
 		UGameplayStatics::GetAllActorsWithTag(GetWorld(), PatrolLocationTag, FoundTargets);
 		// UE_LOG(LogTemp, Warning, TEXT("%s"), *PatrolLocationTag.ToString());
 
@@ -35,15 +35,15 @@ void AEnemy_TESTGuard::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// AI ÄÁÆ®·Ñ·¯ È¹µæ
+	// AI ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ È¹ï¿½ï¿½
 	AIController = Cast<AAIController>(GetController());
 
-	// AI ÄÁÆ®·Ñ·¯°¡ ÀÖÀ¸¸é ÀÌµ¿ ¿Ï·á ÀÌº¥Æ® ¹ÙÀÎµù
+	// AI ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½Ï·ï¿½ ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½Îµï¿½
 	if (AIController)
 	{
-		// µð¹ö±ë ¿¡·¯ ¹æÁö¸¦ À§ÇØ ¾ð¹ÙÀÎµù ÄÚµå ½ÇÇà
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Îµï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
 		AIController->ReceiveMoveCompleted.RemoveDynamic(this, &AEnemy_TESTGuard::OnMoveCompleted);
-		// ÀÌµ¿ ¿Ï·á ÀÌº¥Æ® µ¨¸®°ÔÀÌÆ® ¹ÙÀÎµù
+		// ï¿½Ìµï¿½ ï¿½Ï·ï¿½ ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Îµï¿½
 		AIController->ReceiveMoveCompleted.AddDynamic(this, &AEnemy_TESTGuard::OnMoveCompleted);
 
 		UE_LOG(LogTemp, Warning, TEXT("AIController found for %s"), *GetName());
@@ -53,14 +53,14 @@ void AEnemy_TESTGuard::BeginPlay()
 		UE_LOG(LogTemp, Error, TEXT("NO AIController found for %s"), *GetName());
 	}
 
-	// ÀÚµ¿À¸·Î ÀÌµ¿ ½ÃÀÛ (ÇÊ¿ä¿¡ µû¶ó ÁÖ¼® Ã³¸®)
+	// ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½Ê¿ä¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½ Ã³ï¿½ï¿½)
 	StartMoving();
 }
 
 
 void AEnemy_TESTGuard::StartMoving()
 {
-	// Å¸°Ù Æ÷ÀÎÆ®¸¦ Ã£°í ÀÌµ¿ ½ÃÀÛ
+	// Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
 	FindTargetPoints();
 	MoveToTarget();
 }
@@ -74,26 +74,26 @@ void AEnemy_TESTGuard::MoveToTarget()
 
 	if (bIsMoving)
 	{
-		// ÀÌ¹Ì ÀÌµ¿ ÁßÀÌ¸é Áßº¹ È£Ãâ ¹æÁö
+		// ï¿½Ì¹ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ßºï¿½ È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		return;
 	}
 
-	// IsSucceeded °ª¿¡ µû¶ó Å¸°Ù ¼±ÅÃ
+	// IsSucceeded ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	AActor* SelectedTarget = bIsSucceeded ? Target : Target2;
 
 	if (SelectedTarget)
 	{
 		bIsMoving = true;
 
-		// AI MoveTo ÇÔ¼ö È£Ãâ
+		// AI MoveTo ï¿½Ô¼ï¿½ È£ï¿½ï¿½
 		FVector TargetLocation = SelectedTarget->GetActorLocation();
 		EPathFollowingRequestResult::Type MoveResult = AIController->MoveToLocation(
 			TargetLocation,
 			AcceptanceRadius,
-			true,  // ¸ñÀûÁö¿¡ ¿À¹ö·¦ µÇ¸é µµÂøÀ¸·Î ÆÇÁ¤ÇÒÁö ¿©ºÎ.
-			true,  // °æ·Î Ã£±â »ç¿ë
-			false, // ÇÁ·ÎÁ§¼Ç »ç¿ë ¾ÈÇÔ
-			true   // ³×ºñ°ÔÀÌ¼Ç µ¥ÀÌÅÍ »ç¿ë
+			true,  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+			true,  // ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½
+			false, // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			true   // ï¿½×ºï¿½ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		);
 
 		if (MoveResult == EPathFollowingRequestResult::Failed)
@@ -117,23 +117,23 @@ void AEnemy_TESTGuard::OnMoveCompleted(FAIRequestID RequestID, EPathFollowingRes
 {
 	bIsMoving = false;
 
-	// ÀÌµ¿ °á°ú¿¡ µû¶ó IsSucceeded °ª Åä±Û
+	// ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ IsSucceeded ï¿½ï¿½ ï¿½ï¿½ï¿½
 	if (Result == EPathFollowingResult::Success)
 	{
-		// ¼º°øÀûÀ¸·Î ÀÌµ¿ ¿Ï·áµÊ
-		bIsSucceeded = !bIsSucceeded;  // °ª Åä±Û
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½Ï·ï¿½ï¿½
+		bIsSucceeded = !bIsSucceeded;  // ï¿½ï¿½ ï¿½ï¿½ï¿½
 		// UE_LOG(LogTemp, Display, TEXT("Move completed successfully. IsSucceeded toggled to: %s"), bIsSucceeded ? TEXT("True") : TEXT("False"));
 
-		// Áö¿¬ ÈÄ ´ÙÀ½ ÀÌµ¿ ½ÃÀÛ
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
 		FTimerHandle TimerHandle;
 		GetWorldTimerManager().SetTimer(TimerHandle, this, &AEnemy_TESTGuard::MoveToTarget, 0.5f, false);
 	}
 	else
 	{
-		// ÀÌµ¿ ½ÇÆÐ
+		// ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
 		UE_LOG(LogTemp, Warning, TEXT("Move failed with result: %d"), static_cast<int32>(Result));
 
-		// ½ÇÆÐ ½Ã¿¡µµ ´Ù½Ã ½Ãµµ
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¿ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½Ãµï¿½
 		FTimerHandle TimerHandle;
 		GetWorldTimerManager().SetTimer(TimerHandle, this, &AEnemy_TESTGuard::MoveToTarget, 1.0f, false);
 	}

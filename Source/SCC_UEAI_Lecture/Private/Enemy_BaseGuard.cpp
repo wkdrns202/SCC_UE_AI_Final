@@ -15,7 +15,7 @@ AEnemy_BaseGuard::AEnemy_BaseGuard()
 {
     PrimaryActorTick.bCanEverTick = true;
 
-    // Pawn °¨Áö ÄÄÆ÷³ÍÆ® ¼³Á¤
+    // Pawn ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
     PawnSensingComponent = CreateDefaultSubobject<UPawnSensingComponent>(TEXT("PawnSensingComponent"));
     PawnSensingComponent->SetPeripheralVisionAngle(ViewAngle);
     PawnSensingComponent->SightRadius = SightRange;
@@ -26,16 +26,16 @@ AEnemy_BaseGuard::AEnemy_BaseGuard()
     PawnSensingComponent->SightRadius = 1500.0f;
 
 
-    // Perception ÃÊ±âÈ­
+    // Perception ï¿½Ê±ï¿½È­
     AIPerceptionComponent = CreateDefaultSubobject<UAIPerceptionComponent>(TEXT("AIPerceptionComponent"));
     /*
-    // °¨Áö ¹üÀ§ ½ºÇÇ¾î ÄÄÆ÷³ÍÆ®
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
     DetectionSphere = CreateDefaultSubobject<USphereComponent>(TEXT("DetectionSphere"));
     DetectionSphere->SetupAttachment(RootComponent);
     DetectionSphere->SetSphereRadius(DetectionRange);
     DetectionSphere->SetCollisionProfileName(TEXT("Trigger"));
     */
-    // ±âº» ¼Ó¼º ÃÊ±âÈ­
+    // ï¿½âº» ï¿½Ó¼ï¿½ ï¿½Ê±ï¿½È­
     CurrentAlertLevel = EAlertLevel::Normal;
     TimeInCurrentAlertLevel = 0.0f;
     LastKnownPlayerLocation = FVector::ZeroVector;
@@ -48,15 +48,15 @@ void AEnemy_BaseGuard::BeginPlay()
 {
     Super::BeginPlay();
 
-    // AI ÄÁÆ®·Ñ·¯ È¹µæ
+    // AI ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ È¹ï¿½ï¿½
     GuardController = Cast<AAIController>(GetController());
 
-    GameMode = GetWorld()->GetAuthGameMode(); // Ä³½ºÆÃ ¾øÀÌ ±âº» Å¸ÀÔÀ¸·Î ¹ÞÀ½
+    GameMode = GetWorld()->GetAuthGameMode(); // Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½âº» Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     /*
-    // ÀÎÅÍÆäÀÌ½º È®ÀÎ ÈÄ »ç¿ë
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
     if (GameMode && GameMode->GetClass()->ImplementsInterface(UGameRulesInterface::StaticClass()))
     {
-        // ÀÎÅÍÆäÀÌ½º È£Ãâ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ È£ï¿½ï¿½
         IGameRulesInterface::Execute_ReportPlayerCapture(GameMode, TargetPlayer, this);
     }
 
@@ -65,15 +65,15 @@ void AEnemy_BaseGuard::BeginPlay()
         (GameMode && GameMode->GetClass()->ImplementsInterface(UGameRulesInterface::StaticClass())) ? TEXT("Success") : TEXT("Fail"),
         (GameMode && GameMode->GetClass()->ImplementsInterface(UGameRulesInterface::StaticClass())) ? IGameRulesInterface::Execute_ReportCurrentLives(GameMode) : -1);
     */
-    // PawnSensing ÀÌº¥Æ® ¹ÙÀÎµù
+    // PawnSensing ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½Îµï¿½
     if (PawnSensingComponent)
     {
         PawnSensingComponent->OnSeePawn.AddDynamic(this, &AEnemy_BaseGuard::OnSeePlayer);
-        PawnSensingComponent->OnHearNoise.RemoveAll(this); // ¾ÈÀüÇÏ°Ô HearÀº ÃÊ±âÈ­
+        PawnSensingComponent->OnHearNoise.RemoveAll(this); // ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ Hearï¿½ï¿½ ï¿½Ê±ï¿½È­
         PawnSensingComponent->OnHearNoise.AddDynamic(this, &AEnemy_BaseGuard::OnHearNoise);
     }
 
-    // AI ÀÎÁö ÀÌº¥Æ® ¹ÙÀÎµù
+    // AI ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½Îµï¿½
     if (AIPerceptionComponent)
     {
         AIPerceptionComponent->OnTargetPerceptionUpdated.AddDynamic(this, &AEnemy_BaseGuard::OnTargetPerceptionUpdated);
@@ -86,7 +86,7 @@ void AEnemy_BaseGuard::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
 
-    // °æ°è ¼öÁØ¿¡ µû¸¥ Çàµ¿ ¾÷µ¥ÀÌÆ®
+    // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½àµ¿ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
     switch (CurrentAlertLevel)
     {
     case EAlertLevel::Normal:
@@ -100,7 +100,7 @@ void AEnemy_BaseGuard::Tick(float DeltaTime)
         break;
     case EAlertLevel::Pursuit:
         PursuePlayer();
-        // ÇÃ·¹ÀÌ¾î Ä¸Ã³ È®ÀÎ
+        // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ Ä¸Ã³ È®ï¿½ï¿½
         if (TargetPlayer && FVector::Dist(GetActorLocation(), TargetPlayer->GetActorLocation()) <= CaptureRange)
         {
             UE_LOG(LogTemp, Error, TEXT("Player Captured"));
@@ -109,7 +109,7 @@ void AEnemy_BaseGuard::Tick(float DeltaTime)
         break;
     }
 
-    // °æ°è ½Ã°£ ¾÷µ¥ÀÌÆ®
+    // ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
     TimeInCurrentAlertLevel += DeltaTime;
 }
 
@@ -119,28 +119,28 @@ void AEnemy_BaseGuard::OnPlayerDetected(APawn* DetectedPawn)
     if (!DetectedPawn)
         return;
 
-    // DetectableInterface°¡ ±¸ÇöµÇ¾î ÀÖ´ÂÁö È®ÀÎ
+    // DetectableInterfaceï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
     if (DetectedPawn->GetClass()->ImplementsInterface(UDetectableInterface::StaticClass()))
     {
-        // Execute_ Á¢µÎ»ç¸¦ »ç¿ëÇÏ¿© ÀÎÅÍÆäÀÌ½º ¸Þ¼­µå È£Ãâ
+        // Execute_ ï¿½ï¿½ï¿½Î»ç¸¦ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ È£ï¿½ï¿½
         if (IDetectableInterface::Execute_CanBeDetected(DetectedPawn))
         {
             LastKnownPlayerLocation = DetectedPawn->GetActorLocation();
             TargetPlayer = DetectedPawn;
 
-            // °æ°è ¼öÁØ ¾÷µ¥ÀÌÆ®
+            // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
             SetAlertLevel(EAlertLevel::Pursuit);
 
-            // ´Ù¸¥ °¡µå¿¡°Ô ¾Ë¸²
+            // ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½å¿¡ï¿½ï¿½ ï¿½Ë¸ï¿½
             AlertOtherGuards(LastKnownPlayerLocation);
         }
 
         else if (!IDetectableInterface::Execute_CanBeDetected(DetectedPawn))
         {
             UE_LOG(LogTemp, Error, TEXT("But the Player Can't be detected"));
-            // °æ°è»óÅÂ·Î ¼¼ÆÃ
+            // ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½
             SetAlertLevel(EAlertLevel::Alert);
-            // ¸øÀâÀ» °æ¿ì ¸¶Áö¸· ¹ß°ß À§Ä¡·Î ÀÌµ¿.
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ìµï¿½.
             GuardController->MoveToLocation(LastKnownPlayerLocation, -1.0f, true, true, true);
         }
     }
@@ -158,7 +158,7 @@ void AEnemy_BaseGuard::OnHearNoise(APawn* NoiseMaker, const FVector& Location, f
         {
             LastKnownPlayerLocation = Location;
 
-            // º¼·ý¿¡ µû¸¥ °æ°è ¼öÁØ ¼³Á¤
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (Volume > 0.7f)
             {
                 SetAlertLevel(EAlertLevel::Alert);
@@ -168,7 +168,7 @@ void AEnemy_BaseGuard::OnHearNoise(APawn* NoiseMaker, const FVector& Location, f
                 SetAlertLevel(EAlertLevel::Suspicious);
             }
 
-            // ´Ù¸¥ °¡µå¿¡°Ô ¾Ë¸²
+            // ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½å¿¡ï¿½ï¿½ ï¿½Ë¸ï¿½
             if (Volume > 0.5f)
             {
                 AlertOtherGuards(Location);
@@ -184,17 +184,17 @@ void AEnemy_BaseGuard::OnSeePlayer(APawn* SeenPawn)
 
 void AEnemy_BaseGuard::SetAlertLevel(EAlertLevel NewAlertLevel)
 {
-    // ÀÌ¹Ì ´õ ³ôÀº °æ°è ¼öÁØÀÌ¸é À¯Áö
+    // ï¿½Ì¹ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
     if (static_cast<uint8>(CurrentAlertLevel) >= static_cast<uint8>(NewAlertLevel))
         return;
 
     CurrentAlertLevel = NewAlertLevel;
     TimeInCurrentAlertLevel = 0.0f;
 
-    // °æ°è Å¸ÀÌ¸Ó ¼³Á¤
+    // ï¿½ï¿½ï¿½ Å¸ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
     ResetAlertTimer();
 
-    // °æ°è ¼öÁØ¿¡ µû¸¥ ¼Óµµ Á¶Á¤
+    // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ø¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
     if (CurrentAlertLevel == EAlertLevel::Pursuit)
     {
         GetCharacterMovement()->MaxWalkSpeed = PursuitSpeed;
@@ -213,11 +213,11 @@ void AEnemy_BaseGuard::PursuePlayer()
     if (AIClass != "Police")
         return;
 
-    // ÇÃ·¹ÀÌ¾î ÃßÀû
+    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½
     GuardController->MoveToActor(TargetPlayer, -1.0f, true, true, true);
 
-    // ÁÖ±âÀûÀ¸·Î ´Ù¸¥ °¡µå¿¡°Ô Á¤º¸ Àü´Þ
-    if (FMath::RandBool()) // 50% È®·ü·Î È£Ãâ (Æ®·¡ÇÈ Á¦ÇÑ)
+    // ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½å¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    if (FMath::RandBool()) // 50% È®ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ (Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
     {
         AlertOtherGuards(TargetPlayer->GetActorLocation());
     }
@@ -228,14 +228,14 @@ void AEnemy_BaseGuard::InvestigateLastKnownLocation()
     if (!GuardController || LastKnownPlayerLocation.IsZero())
         return;
 
-    // ¸¶Áö¸· ¾Ë·ÁÁø À§Ä¡·Î ÀÌµ¿
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë·ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ìµï¿½
     GuardController->MoveToLocation(LastKnownPlayerLocation, -1.0f, true, true, true);
 
-    // ¸ñÀûÁö¿¡ µµÂøÇß´ÂÁö È®ÀÎ
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
     float DistanceToTarget = FVector::Dist(GetActorLocation(), LastKnownPlayerLocation);
     if (DistanceToTarget < 100.0f)
     {
-        // ÁÖº¯ ·£´ý À§Ä¡ »ý¼ºÇÏ¿© Ãß°¡ Å½»ö
+        // ï¿½Öºï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ß°ï¿½ Å½ï¿½ï¿½
         UNavigationSystemV1* NavSystem = UNavigationSystemV1::GetCurrent(GetWorld());
         if (NavSystem)
         {
@@ -250,8 +250,8 @@ void AEnemy_BaseGuard::InvestigateLastKnownLocation()
 
 void AEnemy_BaseGuard::Patrol()
 {
-    // ÀÌ ¸Þ¼­µå´Â ÆÄ»ý Å¬·¡½º¿¡¼­ ±¸ÇöÇØ¾ß ÇÕ´Ï´Ù (°¡»ó ÇÔ¼ö)
-    // °¢ °¡µå À¯Çüº°·Î ´Ù¸¥ ¼øÂû ÆÐÅÏ ±¸Çö
+    // ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ï¿½ ï¿½Ä»ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Õ´Ï´ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½)
+    // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 }
 
 void AEnemy_BaseGuard::CapturePlayer()
@@ -264,16 +264,16 @@ void AEnemy_BaseGuard::CapturePlayer()
         (GameMode && GameMode->GetClass()->ImplementsInterface(UGameRulesInterface::StaticClass())) ? TEXT("Success") : TEXT("Fail"),
         (GameMode && GameMode->GetClass()->ImplementsInterface(UGameRulesInterface::StaticClass())) ? IGameRulesInterface::Execute_ReportCurrentLives(GameMode) : -1);
 
-    // ÀÎÅÍÆäÀÌ½º »ç¿ë
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½
     if (TargetPlayer->GetClass()->ImplementsInterface(UDetectableInterface::StaticClass()))
     {
-        // ÇÃ·¹ÀÌ¾î Ä¸Ã³ Ã³¸®
+        // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ Ä¸Ã³ Ã³ï¿½ï¿½
         IDetectableInterface::Execute_CapturedByAI(TargetPlayer);
 
-        // °æ°è ¼öÁØ ÃÊ±âÈ­
+        // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
         SetAlertLevel(EAlertLevel::Normal);
 
-        // Àá½Ã ÈÄ ¼øÂû Àç°³
+        // ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ç°³
         LastKnownPlayerLocation = FVector::ZeroVector;
         TargetPlayer = nullptr;
     }
@@ -281,23 +281,23 @@ void AEnemy_BaseGuard::CapturePlayer()
 
 void AEnemy_BaseGuard::AlertOtherGuards(const FVector& LocationToInvestigate)
 {
-    // ´Ù¸¥ °¡µå Ã£±â
+    // ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½
     TArray<AActor*> Guards;
     UGameplayStatics::GetAllActorsOfClass(GetWorld(), AEnemy_BaseGuard::StaticClass(), Guards);
     UE_LOG(LogTemp, Warning, TEXT("Communication Started"));
-    // °¢ °¡µå¿¡°Ô Á¤º¸ Àü´Þ
+    // ï¿½ï¿½ ï¿½ï¿½ï¿½å¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     for (AActor* Guard : Guards)
     {
         if (Guard != this)
         {
-            // Åë½Å ¹üÀ§ ³»¿¡ ÀÖ´ÂÁö È®ÀÎ
+            // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
             float Distance = FVector::Dist(GetActorLocation(), Guard->GetActorLocation());
             if (Distance <= CommunicationRange)
             {
-                // ÀÎÅÍÆäÀÌ½º ±¸Çö È®ÀÎ
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
                 if (Guard->GetClass()->ImplementsInterface(UGuardInterface::StaticClass()))
                 {
-                    // ÀÎÅÍÆäÀÌ½º ¹ß½Å È£ÃâÀÌ¹Ç·Î ¹Ýµå½Ã Execute_ Á¢µÎ»ç »ç¿ë
+                    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ß½ï¿½ È£ï¿½ï¿½ï¿½Ì¹Ç·ï¿½ ï¿½Ýµï¿½ï¿½ Execute_ ï¿½ï¿½ï¿½Î»ï¿½ ï¿½ï¿½ï¿½
                     IGuardInterface::Execute_ReceiveAlert(Guard, LocationToInvestigate, static_cast<uint8>(CurrentAlertLevel), this); 
                     // UE_LOG(LogTemp, Warning, TEXT("Communication Compeleted"));
                 }
@@ -308,18 +308,18 @@ void AEnemy_BaseGuard::AlertOtherGuards(const FVector& LocationToInvestigate)
 
 void AEnemy_BaseGuard::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus Stimulus)
 {
-    // ÀÚ±Ø Á¾·ù¿¡ µû¸¥ Ã³¸®
+    // ï¿½Ú±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
     if (Stimulus.WasSuccessfullySensed())
     {
         APawn* DetectedPawn = Cast<APawn>(Actor);
         if (DetectedPawn)
         {
-            // ½Ã°¢ ÀÚ±Ø
+            // ï¿½Ã°ï¿½ ï¿½Ú±ï¿½
             if (Stimulus.Type == UAISense::GetSenseID<UAISense_Sight>())
             {
                 OnSeePlayer(DetectedPawn);
             }
-            // Ã»°¢ ÀÚ±Ø
+            // Ã»ï¿½ï¿½ ï¿½Ú±ï¿½
             else if (Stimulus.Type == UAISense::GetSenseID<UAISense_Hearing>())
             {
                 OnHearNoise(DetectedPawn, Stimulus.StimulusLocation, Stimulus.Strength);
@@ -330,20 +330,20 @@ void AEnemy_BaseGuard::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus Stim
 
 void AEnemy_BaseGuard::ResetAlertTimer()
 {
-    // ±âÁ¸ Å¸ÀÌ¸Ó Ãë¼Ò
+    // ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½
     GetWorldTimerManager().ClearTimer(AlertTimerHandle);
 
-    // ¾Ë¸² »óÅÂ°¡ ¾Æ´Ï¸é Å¸ÀÌ¸Ó ¼³Á¤ ¾È ÇÔ
+    // ï¿½Ë¸ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ ï¿½Æ´Ï¸ï¿½ Å¸ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½
     if (CurrentAlertLevel == EAlertLevel::Normal)
         return;
 
-    // »õ Å¸ÀÌ¸Ó ¼³Á¤
+    // ï¿½ï¿½ Å¸ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
     GetWorldTimerManager().SetTimer(AlertTimerHandle, this, &AEnemy_BaseGuard::HandleAlertTimeout, AlertTimeout, false);
 }
 
 void AEnemy_BaseGuard::HandleAlertTimeout()
 {
-    // Á¤ÇØÁø ½Ã°£ ÈÄ °æ°è ¼öÁØ ´Ù¿î±×·¹ÀÌµå
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¿ï¿½×·ï¿½ï¿½Ìµï¿½
     switch (CurrentAlertLevel)
     {
     case EAlertLevel::Pursuit:
@@ -360,7 +360,7 @@ void AEnemy_BaseGuard::HandleAlertTimeout()
     }
 }
 
-// ÀÎÅÍÆäÀÌ½º ±¸Çö ¸Þ¼­µåµé
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ï¿½
 FVector AEnemy_BaseGuard::GetLastKnownPlayerLocation_Implementation() const
 {
     return LastKnownPlayerLocation;
@@ -378,17 +378,17 @@ APawn* AEnemy_BaseGuard::GetTargetPlayer_Implementation() const
 
 void AEnemy_BaseGuard::ReceiveAlert_Implementation(const FVector& Location, uint8 AlertLevel, AActor* AlertSource)
 {
-    // Á¤º¸ ¼ö½Å Ã³¸®
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
     LastKnownPlayerLocation = Location;
     UE_LOG(LogTemp, Warning, TEXT("Alert Received. The Last Known Location is: %s"), *LastKnownPlayerLocation.ToString());
 
-    // ÇØ´çÁöÁ¡À¸·Î Áý°á
+    // ï¿½Ø´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     if (GuardController)
     {
         GuardController->MoveToLocation(LastKnownPlayerLocation, -1.0f, true, true, true);
     }
 
-    // ±âÁ¸ °æ°è ·¹º§º¸´Ù ³ôÀ» °æ¿ì¿¡¸¸ ¾÷µ¥ÀÌÆ®
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ì¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
     if (AlertLevel > static_cast<uint8>(CurrentAlertLevel))
     {
         SetAlertLevel(static_cast<EAlertLevel>(AlertLevel));
@@ -407,10 +407,10 @@ void AEnemy_BaseGuard::Persuaded_Implementation()
     }
 }
 /*
-// ÀÎÅÍÆäÀÌ½º ÀÛµ¿ ¿©ºÎ µî µð¹ö±ë¿ë ÄÚµå. ÀÛµ¿ È®ÀÎµÇ¸é ÁÖ¼®Ã³¸® °¡´É.
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½Ûµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½. ï¿½Ûµï¿½ È®ï¿½ÎµÇ¸ï¿½ ï¿½Ö¼ï¿½Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 void AEnemy_BaseGuard::Test()
 {
-    // ÇöÀç Å¸°Ù ÇÃ·¹ÀÌ¾î Á¤º¸ »ó¼¼ Ãâ·Â
+    // ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
     if (TargetPlayer)
     {
         UE_LOG(LogTemp, Error, TEXT("Target Player Info:"));
@@ -422,17 +422,17 @@ void AEnemy_BaseGuard::Test()
         UE_LOG(LogTemp, Error, TEXT("No Target Player Detected"));
     }
 
-    // ÇöÀç °æ°è ¼öÁØ È®ÀÎ
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
     UE_LOG(LogTemp, Warning, TEXT("Current Alert Level: %d"), static_cast<int32>(CurrentAlertLevel));
 
-    // ½Ã¾ß °ü·Ã µð¹ö±ë
+    // ï¿½Ã¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
     if (PawnSensingComponent)
     {
         UE_LOG(LogTemp, Warning, TEXT("Sight Radius: %f"), PawnSensingComponent->SightRadius);
         UE_LOG(LogTemp, Warning, TEXT("Peripheral Vision Angle: %f"), PawnSensingComponent->GetPeripheralVisionAngle());
     }
 
-    // °¡Àå °¡±î¿î ÇÃ·¹ÀÌ¾î Ã£±â
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ Ã£ï¿½ï¿½
     APawn* NearestPlayer = UGameplayStatics::GetPlayerPawn(GetWorld(), 0);
     if (NearestPlayer)
     {

@@ -15,13 +15,13 @@ class AActor;
 #endif
 #define SCC_UEAI_LECTURE_InteractiveBox_generated_h
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_InteractiveBox_h_11_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_InteractiveBox_h_11_RPC_WRAPPERS_NO_PURE_DECLS \
 	virtual void Interact_Implementation(AActor* Interactor); \
 	DECLARE_FUNCTION(execInteract);
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_InteractiveBox_h_11_CALLBACK_WRAPPERS
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_InteractiveBox_h_11_INCLASS_NO_PURE_DECLS \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_InteractiveBox_h_11_CALLBACK_WRAPPERS
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_InteractiveBox_h_11_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAInteractiveBox(); \
 	friend struct Z_Construct_UClass_AInteractiveBox_Statics; \
@@ -31,7 +31,7 @@ public: \
 	virtual UObject* _getUObject() const override { return const_cast<AInteractiveBox*>(this); }
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_InteractiveBox_h_11_ENHANCED_CONSTRUCTORS \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_InteractiveBox_h_11_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AInteractiveBox(AInteractiveBox&&); \
@@ -43,14 +43,14 @@ public: \
 	NO_API virtual ~AInteractiveBox();
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_InteractiveBox_h_8_PROLOG
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_InteractiveBox_h_11_GENERATED_BODY \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_InteractiveBox_h_8_PROLOG
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_InteractiveBox_h_11_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_InteractiveBox_h_11_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_InteractiveBox_h_11_CALLBACK_WRAPPERS \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_InteractiveBox_h_11_INCLASS_NO_PURE_DECLS \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_InteractiveBox_h_11_ENHANCED_CONSTRUCTORS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_InteractiveBox_h_11_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_InteractiveBox_h_11_CALLBACK_WRAPPERS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_InteractiveBox_h_11_INCLASS_NO_PURE_DECLS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_InteractiveBox_h_11_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -58,7 +58,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> SCC_UEAI_LECTURE_API UClass* StaticClass<class AInteractiveBox>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_InteractiveBox_h
+#define CURRENT_FILE_ID FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_InteractiveBox_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

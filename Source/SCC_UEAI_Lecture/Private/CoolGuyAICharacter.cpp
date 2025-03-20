@@ -7,7 +7,7 @@ ACoolGuyAICharacter::ACoolGuyAICharacter()
     // Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
     PrimaryActorTick.bCanEverTick = true;
 
-    // AI ÀÚµ¿ ¼ÒÀ¯ ¼³Á¤
+    // AI ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
 }
 
@@ -16,15 +16,15 @@ void ACoolGuyAICharacter::BeginPlay()
 {
     Super::BeginPlay();
 
-    // AI ÄÁÆ®·Ñ·¯ ¹× ºí·¢º¸µå ÃÊ±âÈ­
+    // AI ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
 
     AIController = Cast<ACoolGuyAIController>(GetController());
 
     if (AIController)
     {
-        // Behavior Tree³» Blackboard ÇÒ´ç ¾ø´Â »óÅÂ¸é null ¹ÝÈ¯ÁÖÀÇ.
+        // Behavior Treeï¿½ï¿½ Blackboard ï¿½Ò´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ null ï¿½ï¿½È¯ï¿½ï¿½ï¿½ï¿½.
         BlackboardComp = AIController->GetBlackboardComponent();
-        UE_LOG(LogTemp, Warning, TEXT("ºí·¢º¸µå ÃÊ±âÈ­. The Name is : %s"), *BlackboardComp->GetName());
+        UE_LOG(LogTemp, Warning, TEXT("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­. The Name is : %s"), *BlackboardComp->GetName());
     }
 }
 
@@ -34,69 +34,69 @@ void ACoolGuyAICharacter::Tick(float DeltaTime)
     Super::Tick(DeltaTime);
 
 
-    // Patrol Points°¡ ÁØºñµÇ¾úÀ» ¶§ bool º¯¼öÅëÇØ ¾Ë¸² ¹Þµµ·Ï ¼³°è.
+    // Patrol Pointsï¿½ï¿½ ï¿½Øºï¿½Ç¾ï¿½ï¿½ï¿½ ï¿½ï¿½ bool ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¸ï¿½ ï¿½Þµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
     if (AIController->bPatrolPointsReady)
     {
-        // blackboard¿¡¼­ targetlocation ¹Þ¾Æ¿À±â
+        // blackboardï¿½ï¿½ï¿½ï¿½ targetlocation ï¿½Þ¾Æ¿ï¿½ï¿½ï¿½
         CurrentTargetLocation = BlackboardComp->GetValueAsVector("PatrolLocation");
         PatrolPoints = AIController->PatrolPoints;
-        AIController->bPatrolPointsReady = false; // ÇÑ ¹ø ¾÷µ¥ÀÌÆ® ¹ÞÀº ÈÄ ¹Ýº¹ ½ÇÇàµÇÁö ¾Êµµ·Ï false ºÎ¿©.
+        AIController->bPatrolPointsReady = false; // ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ýºï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Êµï¿½ï¿½ï¿½ false ï¿½Î¿ï¿½.
     }
 
     UE_LOG(LogTemp, Warning, TEXT("Current Location: %s"), *GetActorLocation().ToString());
     UE_LOG(LogTemp, Warning, TEXT("Target Location: %s"), *CurrentTargetLocation.ToString());
-    
 
-    // ¸ñÇ¥ ÁöÁ¡¿¡ µµ´ÞÇß´ÂÁö È®ÀÎ
+
+    // ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½ï¿½ï¿½ È®ï¿½ï¿½
     if (PatrolPoints.Num() > 0 && IsCloseToTarget())
     {
-        // ´ÙÀ½ ÆÐÆ®·Ñ Æ÷ÀÎÆ®·Î ÀÌµ¿
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ìµï¿½
         UE_LOG(LogTemp, Warning, TEXT("MoveToNextPatrolPoint Called at Tick"));
         MoveToNextPatrolPoint();
     }
 }
 
-// ÆÐÆ®·Ñ Æ÷ÀÎÆ® ¼³Á¤À» À§ÇÑ ÇÔ¼öÃß°¡
+// ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ß°ï¿½
 void ACoolGuyAICharacter::SetPatrolPoints(const TArray<FVector>& Points)
 {
     PatrolPoints = Points;
 
-    // Ã¹ ¹øÂ° ÆÐÆ®·Ñ Æ÷ÀÎÆ® ¼³Á¤
+    // Ã¹ ï¿½ï¿½Â° ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
     if (PatrolPoints.Num() > 0)
     {
 
 
-        // AI ÄÁÆ®·Ñ·¯°¡ BeginPlay¸¦ ÅëÇØ BlackboardComp¿¡ ÀúÀåµÇ¾úÀ¸¹Ç·Î ¾Æ·¡¿Í °°ÀÌ ¼±¾ð.
+        // AI ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ BeginPlayï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ BlackboardCompï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½Æ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
         if (BlackboardComp)
         {
-            UE_LOG(LogTemp, Warning, TEXT("### PatrolLocation ÃÖ½ÅÈ­"));
+            UE_LOG(LogTemp, Warning, TEXT("### PatrolLocation ï¿½Ö½ï¿½È­"));
             BlackboardComp->SetValueAsVector("PatrolLocation", CurrentTargetLocation);
         }
     }
 }
 
-// ¸ñÇ¥ ÁöÁ¡ ±ÙÁ¢ È®ÀÎ ÇÔ¼ö Ãß°¡.
+// ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½Ô¼ï¿½ ï¿½ß°ï¿½.
 bool ACoolGuyAICharacter::IsCloseToTarget(float AcceptableDistance)
 {
-    // ÇöÀç À§Ä¡¿Í ¸ñÇ¥ À§Ä¡ °£ÀÇ °Å¸® °è»ê
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½
     float Distance = FVector::Dist(GetActorLocation(), CurrentTargetLocation);
     UE_LOG(LogTemp, Warning, TEXT("Distance: %f, Acceptable Distance: 100.0f"), Distance);
-    // Çì´õ¿¡¼­ ÁöÁ¤ÇÑ °Å¸®(AcceptableDistance)º¸´Ù °¡±î¿ì¸é true ¹ÝÈ¯
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½(AcceptableDistance)ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ true ï¿½ï¿½È¯
     return Distance <= AcceptableDistance;
 }
 
-// ´ÙÀ½ ÆÐÆ®·Ñ Æ÷ÀÎÆ®·Î ÀÌµ¿ÇÔ¼ö Ãß°¡.
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ô¼ï¿½ ï¿½ß°ï¿½.
 void ACoolGuyAICharacter::MoveToNextPatrolPoint()
 {
     if (PatrolPoints.Num() == 0) return;
     UE_LOG(LogTemp, Warning, TEXT("MoveToNextPatrolPoint Called"));
-    // ´ÙÀ½ ÀÎµ¦½º °è»ê (¼øÂ÷Àû ÀÌµ¿)
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½)
     CurrentPatrolIndex = (CurrentPatrolIndex + 1) % PatrolPoints.Num();
     //UE_LOG(LogTemp, Warning, TEXT("PatrolPoints Count is : %d"), PatrolPoints.Num());
-    // »õ ¸ñÇ¥ À§Ä¡ ¼³Á¤
+    // ï¿½ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
     CurrentTargetLocation = PatrolPoints[CurrentPatrolIndex];
 
-    // ºí·¢º¸µå¿¡ »õ À§Ä¡ ¾÷µ¥ÀÌÆ®
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½å¿¡ ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
     if (BlackboardComp)
     {
         BlackboardComp->SetValueAsVector("PatrolLocation", CurrentTargetLocation);

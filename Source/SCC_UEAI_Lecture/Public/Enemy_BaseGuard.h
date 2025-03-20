@@ -8,34 +8,34 @@
 #include "DetectableInterface.h"
 #include "Enemy_BaseGuard.generated.h"
 
-// ¹Ì¸®¼±¾ð
+// ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½
 class UAIPerceptionComponent;
 class UPawnSensingComponent;
 class USphereComponent;
 class AAIController;
 class IGameRulesInterface;
 
-// °æ°è »óÅÂ ¿­°ÅÇü
+// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 UENUM(BlueprintType)
 enum class EAlertLevel : uint8
 {
-    Normal      UMETA(DisplayName = "Normal"),      // ÀÏ¹Ý »óÅÂ
-    Suspicious  UMETA(DisplayName = "Suspicious"),  // ÀÇ½É »óÅÂ
-    Alert       UMETA(DisplayName = "Alert"),       // °æ°è »óÅÂ
-    Pursuit     UMETA(DisplayName = "Pursuit")      // Ãß°Ý »óÅÂ
+    Normal      UMETA(DisplayName = "Normal"),      // ï¿½Ï¹ï¿½ ï¿½ï¿½ï¿½ï¿½
+    Suspicious  UMETA(DisplayName = "Suspicious"),  // ï¿½Ç½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    Alert       UMETA(DisplayName = "Alert"),       // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    Pursuit     UMETA(DisplayName = "Pursuit")      // ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½
 };
 
-// ´ÙÁß»ó¼Ó. Ä³¸¯ÅÍ ±â´É »Ó ¾Æ´Ï¶ó GuardInterface ±â´Éµµ »ó¼Ó¹Þ°ÔµÊ. AI °æºñ ½Ã½ºÅÛÀÌ GuardInterface±¸Çö, ÇÃ·¹ÀÌ¾î°¡ Detectable ±¸Çö(ÀâÈ÷´ÂÁö), GameMode°¡ GameRulesInterface ±¸Çö.
+// ï¿½ï¿½ï¿½ß»ï¿½ï¿½. Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Æ´Ï¶ï¿½ GuardInterface ï¿½ï¿½Éµï¿½ ï¿½ï¿½Ó¹Þ°Ôµï¿½. AI ï¿½ï¿½ï¿½ ï¿½Ã½ï¿½ï¿½ï¿½ï¿½ï¿½ GuardInterfaceï¿½ï¿½ï¿½ï¿½, ï¿½Ã·ï¿½ï¿½Ì¾î°¡ Detectable ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½), GameModeï¿½ï¿½ GameRulesInterface ï¿½ï¿½ï¿½ï¿½.
 UCLASS()
 class SCC_UEAI_LECTURE_API AEnemy_BaseGuard : public ACharacter, public IGuardInterface 
 {
     GENERATED_BODY()
 
 public:
-    // »ý¼ºÀÚ
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     AEnemy_BaseGuard();
 
-    // ÄÄÆ÷³ÍÆ®µé
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "AI|Perception")
     UAIPerceptionComponent* AIPerceptionComponent;
 
@@ -45,7 +45,7 @@ public:
     //UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "AI|Detection")
     USphereComponent* DetectionSphere;
 
-    // AI ¼Ó¼º
+    // AI ï¿½Ó¼ï¿½
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI|Properties")
     float MovementSpeed = 400.0f;
 
@@ -73,32 +73,32 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI|Properties")
     float CaptureRange = 200.0f;
 
-    // ¸¶Áö¸· ¹ß°ß À§Ä¡
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½Ä¡
     UPROPERTY(BlueprintReadOnly, Category = "AI|Tracking")
     FVector LastKnownPlayerLocation;
 
-    // °æ°è ½Ã°£ °ü¸®
+    // ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½
     UPROPERTY(BlueprintReadOnly, Category = "AI|Tracking")
     float TimeInCurrentAlertLevel;
 
-    // Åë½Å ¹üÀ§ (´Ù¸¥ °¡µå¿¡°Ô Á¤º¸ Àü´Þ ¹üÀ§)
+    // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½å¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI|Communication")
     float CommunicationRange = 3000.0f; // 30 m (3000 uu)
 
-    // Å¸±ê ÇÃ·¹ÀÌ¾î
+    // Å¸ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½
     UPROPERTY(BlueprintReadOnly, Category = "AI|Tracking")
     APawn* TargetPlayer;
 
-    // °ÔÀÓ¸ðµå
+    // ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½
     UPROPERTY(BlueprintReadOnly, Category = "AI|Tracking")
-    AGameModeBase* GameMode; // ±âº» °ÔÀÓ¸ðµå Å¸ÀÔ »ç¿ë
+    AGameModeBase* GameMode; // ï¿½âº» ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½
 
-    // AI °è±Þ ¼³Á¤
+    // AI ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI|Properties")
     FName AIClass; 
 
 
-    // ÀÎÅÍÆäÀÌ½º ¸Þ¼­µå ±¸Çö
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½Þ¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     virtual FVector GetLastKnownPlayerLocation_Implementation() const override;
     virtual uint8 GetAlertLevel_Implementation() const override;
     virtual APawn* GetTargetPlayer_Implementation() const override;
@@ -109,60 +109,60 @@ protected:
     virtual void BeginPlay() override;
     virtual void Tick(float DeltaTime) override;
 
-    // AI ÄÁÆ®·Ñ·¯ ÂüÁ¶
+    // AI ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ ï¿½ï¿½ï¿½ï¿½
     UPROPERTY()
     AAIController* GuardController;
 
-    // Å¸ÀÌ¸Ó ÇÚµé
+    // Å¸ï¿½Ì¸ï¿½ ï¿½Úµï¿½
     FTimerHandle AlertTimerHandle;
 
     FTimerHandle TestTimerHandle;
 
 public:
-    // ÇÃ·¹ÀÌ¾î °¨Áö ÇÔ¼ö
+    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     UFUNCTION(BlueprintCallable, Category = "AI|Detection")
     virtual void OnPlayerDetected(APawn* DetectedPawn);
 
-    // ¼Ò¸® °¨Áö ÇÔ¼ö
+    // ï¿½Ò¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     UFUNCTION(BlueprintCallable, Category = "AI|Detection")
     virtual void OnHearNoise(APawn* NoiseMaker, const FVector& Location, float Volume);
 
-    // ½Ã°¢ °¨Áö ÇÔ¼ö
+    // ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     UFUNCTION(BlueprintCallable, Category = "AI|Detection")
     virtual void OnSeePlayer(APawn* SeenPawn);
 
-    // °æ°è ¼öÁØ º¯°æ ÇÔ¼ö
+    // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     UFUNCTION(BlueprintCallable, Category = "AI|Behavior")
     virtual void SetAlertLevel(EAlertLevel NewAlertLevel);
 
-    // ÇÃ·¹ÀÌ¾î ÃßÀû ÇÔ¼ö
+    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     UFUNCTION(BlueprintCallable, Category = "AI|Behavior")
     virtual void PursuePlayer();
 
-    // ¸¶Áö¸· ¾Ë·ÁÁø À§Ä¡ Å½»ö ÇÔ¼ö
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë·ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ Å½ï¿½ï¿½ ï¿½Ô¼ï¿½
     UFUNCTION(BlueprintCallable, Category = "AI|Behavior")
     virtual void InvestigateLastKnownLocation();
 
-    // ¼øÂû ÇÔ¼ö
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     UFUNCTION(BlueprintCallable, Category = "AI|Behavior")
     virtual void Patrol();
 
-    // ÇÃ·¹ÀÌ¾î Æ÷È¹ ÇÔ¼ö
+    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½È¹ ï¿½Ô¼ï¿½
     UFUNCTION(BlueprintCallable, Category = "AI|Behavior")
     virtual void CapturePlayer();
 
-    // ´Ù¸¥ °¡µå¿¡°Ô Á¤º¸ Àü´Þ ÇÔ¼ö
+    // ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½å¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     UFUNCTION(BlueprintCallable, Category = "AI|Communication")
     virtual void AlertOtherGuards(const FVector& LocationToInvestigate);
 
-    // ÀÎÁö ÀÌº¥Æ® ÇÚµé·¯
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ® ï¿½Úµé·¯
     UFUNCTION()
     virtual void OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus Stimulus);
 
 
 
 private:
-    // Å¸ÀÌ¸Ó °ü·Ã ÇÔ¼öµé
+    // Å¸ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½
     void ResetAlertTimer();
     void HandleAlertTimeout();
     void Test();

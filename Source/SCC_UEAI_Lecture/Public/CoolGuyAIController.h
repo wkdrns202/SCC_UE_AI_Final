@@ -14,9 +14,8 @@ UENUM(BlueprintType)
 enum class ESearchStateInternal : uint8
 {
     Idle = 0,
-    Investigating = 1,
-    Chasing = 2,
-    Searching = 3
+    Suspicious = 1,
+    Chasing = 2
 };
 
 
@@ -26,12 +25,12 @@ class SCC_UEAI_LECTURE_API ACoolGuyAIController : public AAIController
     GENERATED_BODY()
 
 public:
-    // Patrol Points°¡ ¼öÁıµÈ ÀÌÈÄ ´ÙÀ½ ¿¬°ü ÄÚµå°¡ ¼øÂ÷ÀûÀ¸·Î ½ÇÇàµÉ ¼ö ÀÖµµ·Ï bool flag È°¿ë.
+    // Patrol Pointsï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµå°¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½ bool flag È°ï¿½ï¿½.
     bool bPatrolPointsReady = false;
 
     ACoolGuyAIController();
 
-    //// ¾Æ·¡ÄÚµå Ãß°¡/¼öÁ¤
+    //// ï¿½Æ·ï¿½ï¿½Úµï¿½ ï¿½ß°ï¿½/ï¿½ï¿½ï¿½ï¿½
     UPROPERTY(BlueprintReadWrite, Category = "AI")
     UBehaviorTreeComponent* BehaviorTreeComponent;
 
@@ -43,65 +42,71 @@ public:
 
     TArray<FVector> PatrolPoints;
 
-    // AI ÀÎ½Ä ÄÄÆ÷³ÍÆ®
+    // AI ï¿½Î½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "AI|Perception")
     UAIPerceptionComponent* CoolGuyPerceptionComponent;
 
-    // ½Ã¾ß¼³Á¤
+    // ï¿½Ã¾ß¼ï¿½ï¿½ï¿½
     UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "AI|Perception")
     UAISenseConfig_Sight* SightConfig;
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "AI|Sensing")
     UPawnSensingComponent* PawnSensingComponent;
 
-    // ÀÎ½Ä ¾÷µ¥ÀÌÆ® Äİ¹é
+    // ï¿½Î½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½İ¹ï¿½
     UFUNCTION()
     void StartChasingPlayer(AActor* PlayerActor);
 
-    // ÇÃ·¹ÀÌ¾î ÃßÀû ÁßÁöÇÔ¼ö
+    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½
     UFUNCTION()
     void StopChasingPlayer();
 
-    // ¸¶Áö¸· À§Ä¡ ¼ö»ö ÇÔ¼ö
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     UFUNCTION()
     void StartSearchingLastLocation();
 
 
 protected:
     virtual void BeginPlay() override;
+    virtual void Tick(float DeltaTime) override;
     virtual void OnPossess(APawn* InPawn) override;
     // virtual void ActorsPerceptionUpdated(const TArray<AActor*>& UpdatedActors) override;
 
 
-    // ÇÚµé·¯
+    // ï¿½Úµé·¯
     UFUNCTION()
     void OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus Stimulus);
 
+    /* ì±•í„° 3 ê³¼ì œë¥¼ ìœ„í•´ ì£¼ì„ì²˜ë¦¬
     UFUNCTION()
     void OnHearNoise(APawn* PawnInstigator, const FVector& Location, float Volume);
-
+    */
     // UFUNCTION()
     // void OnPerceptionUpdated(const TArray<AActor*>& UpdatedActors);
 
     // void ProcessNoiseStimulus(const FAIStimulus& Stimulus, AActor* NoiseSource);
 
-    // À¯Æ¿¸®Æ¼ ÇÔ¼ö
+    // ï¿½ï¿½Æ¿ï¿½ï¿½Æ¼ ï¿½Ô¼ï¿½
+
+    // ì±•í„° 3 Status íƒ€ì´ë¨¸
+
+    float StatusResetTimer;
+
     void ReportNoiseEvent(FVector NoiseLocation, float Loudness = 1.0f, float MaxRange = 2000.0f);
-    void TestHearing();
 
 
 
 private:
-    // ¼øÂû ÁöÁ¡ ÀúÀå
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     FVector CurrentTargetLocation;
 
-    // ÇÔ¼ö½ÇÇà ¼ø¼­¸¦ °í·ÁÇÑ Áö¿¬ ÃÊ±âÈ­ ÇÔ¼ö
+    // ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½Ô¼ï¿½
     void InitializePatrolPoints();
     
-    // ºí·¢º¸µå ÂüÁ¶
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     UBlackboardComponent* BB = nullptr;
 
-    // ºí·¢º¸µå Å° ÀÌ¸§ »ó¼ö
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å° ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½
     static const FName PatrolLocationKey;
     static const FName TargetPlayerKey;
     static const FName CanSeePlayerKey;
@@ -109,4 +114,5 @@ private:
     static const FName SearchStateKey;
     static const FName LastHeardLocationKey;
     static const FName CanHearPlayerKey;
+    static const FName DetectedCountsKey;
 };

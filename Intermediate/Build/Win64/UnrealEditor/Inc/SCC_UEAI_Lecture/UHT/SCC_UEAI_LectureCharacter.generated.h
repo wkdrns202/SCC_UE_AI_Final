@@ -15,14 +15,15 @@ struct FAIRequestID;
 #endif
 #define SCC_UEAI_LECTURE_SCC_UEAI_LectureCharacter_generated_h
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_25_GENERATED_BODY \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_25_GENERATED_BODY \
 	friend struct Z_Construct_UScriptStruct_FSkillState_Statics; \
 	SCC_UEAI_LECTURE_API static class UScriptStruct* StaticStruct();
 
 
 template<> SCC_UEAI_LECTURE_API UScriptStruct* StaticStruct<struct FSkillState>();
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_44_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_44_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execStopAIDetection); \
 	DECLARE_FUNCTION(execPlayerCaptured); \
 	DECLARE_FUNCTION(execTryPersuade); \
 	DECLARE_FUNCTION(execActivateStealth); \
@@ -33,7 +34,7 @@ template<> SCC_UEAI_LECTURE_API UScriptStruct* StaticStruct<struct FSkillState>(
 	DECLARE_FUNCTION(execMoveToTarget);
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_44_INCLASS_NO_PURE_DECLS \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_44_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesASCC_UEAILectureCharacter(); \
 	friend struct Z_Construct_UClass_ASCC_UEAILectureCharacter_Statics; \
@@ -43,7 +44,7 @@ public: \
 	virtual UObject* _getUObject() const override { return const_cast<ASCC_UEAILectureCharacter*>(this); }
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_44_ENHANCED_CONSTRUCTORS \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_44_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	ASCC_UEAILectureCharacter(ASCC_UEAILectureCharacter&&); \
@@ -55,13 +56,13 @@ public: \
 	NO_API virtual ~ASCC_UEAILectureCharacter();
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_41_PROLOG
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_44_GENERATED_BODY \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_41_PROLOG
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_44_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_44_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_44_INCLASS_NO_PURE_DECLS \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_44_ENHANCED_CONSTRUCTORS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_44_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_44_INCLASS_NO_PURE_DECLS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_44_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -69,7 +70,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> SCC_UEAI_LECTURE_API UClass* StaticClass<class ASCC_UEAILectureCharacter>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h
+#define CURRENT_FILE_ID FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

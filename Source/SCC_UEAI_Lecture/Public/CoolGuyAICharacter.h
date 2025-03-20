@@ -23,30 +23,30 @@ public:
     // Called every frame
     virtual void Tick(float DeltaTime) override;
 
-    //// ¾Æ·¡ ÄÚµå Ãß°¡
+    //// ï¿½Æ·ï¿½ ï¿½Úµï¿½ ï¿½ß°ï¿½
 
-    // ÆÐÆ®·Ñ Æ÷ÀÎÆ® ¼³Á¤ (ÄÁÆ®·Ñ·¯¿¡¼­ È£Ãâ)
+    // ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½)
     void SetPatrolPoints(const TArray<FVector>& Points);
 
 private:
-    // ÇöÀç ¸ñÇ¥ À§Ä¡
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½Ä¡
     FVector CurrentTargetLocation;
 
-    // ÆÐÆ®·Ñ Æ÷ÀÎÆ® ¹è¿­
+    // ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½è¿­
     TArray<FVector> PatrolPoints;
 
-    // ÇöÀç ÀÎµ¦½º
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½
     int32 CurrentPatrolIndex = 0;
 
-    // ¸ñÇ¥ ÁöÁ¡¿¡ µµ´ÞÇß´ÂÁö È®ÀÎÇÏ´Â ÇÔ¼ö
+    // ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß´ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
     bool IsCloseToTarget(float AcceptableDistance = 100.0f);
 
-    // ´ÙÀ½ ÆÐÆ®·Ñ Æ÷ÀÎÆ®·Î ÀÌµ¿
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ìµï¿½
     void MoveToNextPatrolPoint();
 
-    // AI ÄÁÆ®·Ñ·¯ ÂüÁ¶
+    // AI ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ ï¿½ï¿½ï¿½ï¿½
     ACoolGuyAIController* AIController;
 
-    // ºí·¢º¸µå ÄÄÆ÷³ÍÆ® ÂüÁ¶
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
     UBlackboardComponent* BlackboardComp;
 };

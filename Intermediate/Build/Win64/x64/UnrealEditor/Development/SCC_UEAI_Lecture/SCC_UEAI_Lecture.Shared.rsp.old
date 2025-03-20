@@ -290,7 +290,6 @@
 /I "..\Intermediate\Build\Win64\UnrealEditor\Inc\AnimationEditMode\UHT"
 /I "Editor\AnimationEditMode\Public"
 /I "E:\Projects\SCC_UEAI_Lecture\Intermediate\Build\Win64\UnrealEditor\Inc\SCC_UEAI_Lecture\UHT"
-/I "E:\Projects\SCC_UEAI_Lecture\Source\SCC_UEAI_Lecture"
 /I "E:\Projects\SCC_UEAI_Lecture\Source"
 /I "E:\Projects\SCC_UEAI_Lecture\Source\SCC_UEAI_Lecture\Public"
 /I "..\Plugins\EnhancedInput\Intermediate\Build\Win64\UnrealEditor\Inc\EnhancedInput\UHT"

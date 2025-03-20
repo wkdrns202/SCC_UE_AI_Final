@@ -4,39 +4,40 @@
 #include "BehaviorTree/BlackboardComponent.h"
 #include "GameFramework/Character.h"
 
-// ºí·¢º¸µå Å° ÀÌ¸§ Á¤ÀÇ
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å° ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 const FName ACoolGuyAIController::PatrolLocationKey = "PatrolLocation";
-const FName ACoolGuyAIController::TargetPlayerKey = "TargetPlayer";
+const FName ACoolGuyAIController::TargetPlayerKey = "TargetPlayer"; // ì±•í„° 3 ê³¼ì œ
 const FName ACoolGuyAIController::CanSeePlayerKey = "CanSeePlayer";
 const FName ACoolGuyAIController::LastSeenLocationKey = "LastSeenLocation";
 const FName ACoolGuyAIController::SearchStateKey = "SearchState";
 const FName ACoolGuyAIController::LastHeardLocationKey = "LastHeardLocation";
 const FName ACoolGuyAIController::CanHearPlayerKey = "CanHearPlayer";
+const FName ACoolGuyAIController::DetectedCountsKey = "DetectedCounts"; // ì±•í„° 3 ê³¼ì œ
 
 
 ACoolGuyAIController::ACoolGuyAIController()
 {
-    // AI ÀÎ½Ä ÄÄÆ÷³ÍÆ® ¼³Á¤
+    // AI ï¿½Î½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
     CoolGuyPerceptionComponent = CreateDefaultSubobject<UAIPerceptionComponent>(TEXT("PerceptionComponent"));
     SightConfig = CreateDefaultSubobject<UAISenseConfig_Sight>(TEXT("SightConfig"));
 
-    // ½Ã¾ß ¼³Á¤
-    SightConfig->SightRadius = 1500.0f; // ½Ã¾ß ¹üÀ§
-    SightConfig->LoseSightRadius = 2000.0f; // ½Ã¾ß »ó½Ç ¹üÀ§
-    SightConfig->PeripheralVisionAngleDegrees = 70.0f; // ÁÖº¯ ½Ã¾ß °¢µµ
-    SightConfig->SetMaxAge(5.0f); // ÀÚ±Ø ÃÖ´ë ±â¾ï ½Ã°£
+    // ï¿½Ã¾ï¿½ ï¿½ï¿½ï¿½ï¿½
+    SightConfig->SightRadius = 1500.0f; // ï¿½Ã¾ï¿½ ï¿½ï¿½ï¿½ï¿½
+    SightConfig->LoseSightRadius = 2000.0f; // ï¿½Ã¾ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    SightConfig->PeripheralVisionAngleDegrees = 70.0f; // ï¿½Öºï¿½ ï¿½Ã¾ï¿½ ï¿½ï¿½ï¿½ï¿½
+    SightConfig->SetMaxAge(5.0f); // ï¿½Ú±ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½
 
-    // °¨Áö ¼³Á¤
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     SightConfig->DetectionByAffiliation.bDetectEnemies = true;
     SightConfig->DetectionByAffiliation.bDetectFriendlies = true;
     SightConfig->DetectionByAffiliation.bDetectNeutrals = true;
 
-    // ÀÎ½Ä ÄÄÆ÷³ÍÆ®¿¡ ½Ã¾ß ¼³Á¤ Àû¿ë
+    // ï¿½Î½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ã¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     CoolGuyPerceptionComponent->ConfigureSense(*SightConfig);
     CoolGuyPerceptionComponent->SetDominantSense(SightConfig->GetSenseImplementation());
 
-    // Ã»°¢°ü·Ã ¼³Á¤
-    // PawnSensing ÄÄÆ÷³ÍÆ® ¼³Á¤. Sound´Â PerceptionÀÌ ¾Æ´Ñ PawnSensingÀ¸·Î Á¢±ÙÇÏ¿´À½.
+    // Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    // PawnSensing ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½. Soundï¿½ï¿½ Perceptionï¿½ï¿½ ï¿½Æ´ï¿½ PawnSensingï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½.
     PawnSensingComponent = CreateDefaultSubobject<UPawnSensingComponent>(TEXT("PawnSensingComponent"));
     PawnSensingComponent->HearingThreshold = 3000.0f;
     PawnSensingComponent->LOSHearingThreshold = 3000.0f;
@@ -52,7 +53,7 @@ void ACoolGuyAIController::BeginPlay()
 
     BB = GetBlackboardComponent();
 
-    // ÀÎ½Ä ¾÷µ¥ÀÌÆ® ÀÌº¥Æ® ¼³Á¤
+    // ï¿½Î½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½
     CoolGuyPerceptionComponent->OnTargetPerceptionUpdated.AddDynamic(this, &ACoolGuyAIController::OnTargetPerceptionUpdated);
 
     if (BB)
@@ -60,25 +61,35 @@ void ACoolGuyAIController::BeginPlay()
         BB->SetValueAsEnum(SearchStateKey, (uint8)ESearchStateInternal::Idle);
     }
 
-
-    // PawnSensing ÀÌº¥Æ® ¹ÙÀÎµù
+    /* ì±•í„° 3 ê³¼ì œë¥¼ ìœ„í•´ ì£¼ì„ì²˜ë¦¬
+    // PawnSensing ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½Îµï¿½
     if (PawnSensingComponent)
     {
         PawnSensingComponent->OnHearNoise.RemoveAll(this);
         PawnSensingComponent->OnHearNoise.AddDynamic(this, &ACoolGuyAIController::OnHearNoise);
         UE_LOG(LogTemp, Warning, TEXT("PawnSensingComponent OnHearNoise delegate bound"));
     }
-
-    
-
+    */  
 };
 
-//// ¾Æ·¡ÄÚµå Ãß°¡
-void ACoolGuyAIController::OnPossess(APawn* InPawn) // ¿©±â¼­ ÇØ´ç AIController°¡ Á¦¾îÇÏ°Ô µÉ PawnÀÇ Æ÷ÀÎÅÍ Àü´Ş¹ŞÀ½
+void ACoolGuyAIController::Tick(float DeltaTime)
+{
+    // ì±•í„° 3 10ì´ˆ íƒ€ì´ë¨¸ ì„¤ê³„ í›„ Idle ì „í™˜
+    StatusResetTimer -= DeltaTime;
+    if (StatusResetTimer <= 0 && StatusResetTimer > -1)
+    {
+        BB->SetValueAsEnum(SearchStateKey, (uint8)ESearchStateInternal::Idle);
+        BB->SetValueAsEnum(DetectedCountsKey, 0);
+        UE_LOG(LogTemp, Warning, TEXT("Detected COunt and Status Reset"));
+    }
+}
+
+//// ï¿½Æ·ï¿½ï¿½Úµï¿½ ï¿½ß°ï¿½
+void ACoolGuyAIController::OnPossess(APawn* InPawn) // ï¿½ï¿½ï¿½â¼­ ï¿½Ø´ï¿½ AIControllerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ Pawnï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ş¹ï¿½ï¿½ï¿½
 {
     Super::OnPossess(InPawn);
 
-    //ºñÇìÀÌºñ¾î Æ®¸® ½ÇÇà.
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½ï¿½ Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
 
     if (BehaviorTree)
     {
@@ -86,12 +97,12 @@ void ACoolGuyAIController::OnPossess(APawn* InPawn) // ¿©±â¼­ ÇØ´ç AIController°
         RunBehaviorTree(BehaviorTree);
     }
 
-    // Å¸ÀÌ¸Ó¸¦ »ç¿ëÇÏ¿© ¾à°£ Áö¿¬½ÃÅ² ÈÄ ÃÊ±âÈ­
+    // Å¸ï¿½Ì¸Ó¸ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½à°£ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å² ï¿½ï¿½ ï¿½Ê±ï¿½È­
     FTimerHandle TimerHandle;
     GetWorldTimerManager().SetTimer(TimerHandle, this, &ACoolGuyAIController::InitializePatrolPoints, 0.5f, false);
 }
 
-// ÃÊ±âÈ­ Å¸ÀÌ¹Ö Á¶ÀıÀ» À§ÇÑ Áö¿¬ÇÔ¼ö ¹èÄ¡.
+// ï¿½Ê±ï¿½È­ Å¸ï¿½Ì¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ ï¿½ï¿½Ä¡.
 void ACoolGuyAIController::InitializePatrolPoints()
 {
     PatrolPoints.Empty();
@@ -115,17 +126,17 @@ void ACoolGuyAIController::InitializePatrolPoints()
     bPatrolPointsReady = true;
 }
 
-// ÀÎ½Ä ¾÷µ¥ÀÌÆ® Äİ¹é ±¸Çö
+// ï¿½Î½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½İ¹ï¿½ ï¿½ï¿½ï¿½ï¿½
 void ACoolGuyAIController::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus Stimulus)
 {
-    // ÇÃ·¹ÀÌ¾î °¨Áö È®ÀÎ
+    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
     ACharacter* PlayerCharacter = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
     if (!PlayerCharacter) return;
 
-    // Actor¿Í Character¸¦ ´Ü¼øºñ±³ÇÒ ¼ö ¾øÀ¸¹Ç·Î Actor¸¦ ACharacter·Î ÀÓ½Ã Ä³½ºÆÃÇÏ¿© ºñ±³.
+    // Actorï¿½ï¿½ Characterï¿½ï¿½ ï¿½Ü¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ Actorï¿½ï¿½ ACharacterï¿½ï¿½ ï¿½Ó½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½.
     if (Cast<ACharacter>(Actor) == PlayerCharacter)
     {
-        // ½Ã°¢ ÀÚ±ØÀÎÁö È®ÀÎ
+        // ï¿½Ã°ï¿½ ï¿½Ú±ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
         if (Stimulus.Type == UAISense::GetSenseID<UAISense_Sight>())
         {
             bool bCanSeePlayer = Stimulus.WasSuccessfullySensed();
@@ -138,25 +149,32 @@ void ACoolGuyAIController::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus 
 
                 if (bCanSeePlayer)
                 {
-                    // ÇÃ·¹ÀÌ¾î ¹ß°ß - ÃßÀû ½ÃÀÛ
+                    // ì±•í„° 3 ê³¼ì œ ë°œê°íšŸìˆ˜ ì¹´ìš´íŠ¸
+                    BB->SetValueAsInt(DetectedCountsKey, BB->GetValueAsInt(DetectedCountsKey) + 1);
+                    
+                    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ß°ï¿½ - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                     BB->SetValueAsVector(LastSeenLocationKey, Stimulus.StimulusLocation);
-                    StartChasingPlayer(Actor);
-
-                    UE_LOG(LogTemp, Warning, TEXT("AI can see the player! Starting chase..."));
+                    if (BB->GetValueAsInt(DetectedCountsKey) >= 5) // ì±•í„° 3 ê³¼ì œ 5íšŒ ì´ìƒ ë°œê°ë  ê²½ìš° ì¶”ê²©ì‹œì‘
+                    {
+                        StartChasingPlayer(Actor);
+                        BB->SetValueAsEnum(SearchStateKey, (uint8)ESearchStateInternal::Chasing);
+                        StatusResetTimer = 10.0f;
+                        UE_LOG(LogTemp, Warning, TEXT("AI can see the player! Starting chase for 10 sec"));
+                    }                                       
                 }
                 else
                 {
-                    // ÇÃ·¹ÀÌ¾î ½Ã¾ß¿¡¼­ »ç¶óÁü - ¸¶Áö¸· À§Ä¡ °Ë»ö
+                    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ã¾ß¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½Ë»ï¿½
                     ESearchStateInternal CurrentState = (ESearchStateInternal)BB->GetValueAsEnum(SearchStateKey);
                     if (CurrentState == ESearchStateInternal::Chasing)
                     {
                         if (BB)
                         {
-                            BB->SetValueAsEnum(SearchStateKey, (uint8)ESearchStateInternal::Investigating);
+                            BB->SetValueAsEnum(SearchStateKey, (uint8)ESearchStateInternal::Suspicious);
                             BB->SetValueAsVector(LastSeenLocationKey, Stimulus.StimulusLocation);
 
-                            // ÇÊ¿äÇÑ °æ¿ì Ãß°¡ µ¿ÀÛ ±¸Çö
-                            // ¿¹: ¼Óµµ Áõ°¡, ¾Ë¶÷ ¹ß»ı µî
+                            // ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+                            // ï¿½ï¿½: ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½Ë¶ï¿½ ï¿½ß»ï¿½ ï¿½ï¿½
                         }
 
                         UE_LOG(LogTemp, Display, TEXT("Player lost! Searching last known location..."));
@@ -170,7 +188,7 @@ void ACoolGuyAIController::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus 
     }
 }
 
-// ÇÃ·¹ÀÌ¾î ÃßÀû ½ÃÀÛ ÇÔ¼ö
+// ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
 void ACoolGuyAIController::StartChasingPlayer(AActor* PlayerActor)
 {
     if (BB)
@@ -178,12 +196,12 @@ void ACoolGuyAIController::StartChasingPlayer(AActor* PlayerActor)
         BB->SetValueAsEnum(SearchStateKey, (uint8)ESearchStateInternal::Chasing);
         BB->SetValueAsObject(TargetPlayerKey, PlayerActor);
 
-        // ÇÊ¿äÇÑ °æ¿ì Ãß°¡ µ¿ÀÛ ±¸Çö
-        // ¿¹: ¼Óµµ Áõ°¡, ¾Ë¶÷ ¹ß»ı µî
+        // ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        // ï¿½ï¿½: ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½Ë¶ï¿½ ï¿½ß»ï¿½ ï¿½ï¿½
     }
 }
 
-// ÇÃ·¹ÀÌ¾î ÃßÀû ÁßÁö ÇÔ¼ö
+// ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
 void ACoolGuyAIController::StopChasingPlayer()
 {
     if (BB)
@@ -194,22 +212,23 @@ void ACoolGuyAIController::StopChasingPlayer()
     }
 }
 
-// ¸¶Áö¸· À§Ä¡ ¼ö»ö ÇÔ¼ö
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
 void ACoolGuyAIController::StartSearchingLastLocation()
 {
 
     if (BB)
     {
-        BB->SetValueAsEnum(SearchStateKey, (uint8)ESearchStateInternal::Searching);
+        BB->SetValueAsEnum(SearchStateKey, (uint8)ESearchStateInternal::Suspicious);
 
-        // ¸¶Áö¸· À§Ä¡·Î ÀÌµ¿ÇÏ´Â ·ÎÁ÷Àº ºñÇìÀÌºñ¾î Æ®¸®¿¡¼­ Ã³¸®
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ìºï¿½ï¿½ Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
     }
 }
 
-// OnHearNoise ÇÔ¼ö ±¸Çö
+/* ì±•í„° 3 ê³¼ì œë¥¼ ìœ„í•´ ì£¼ì„ì²˜ë¦¬
+// OnHearNoise ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 void ACoolGuyAIController::OnHearNoise(APawn* PawnInstigator, const FVector& Location, float Volume)
 {
-    // ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍÀÎÁö È®ÀÎ
+    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
     ACharacter* PlayerCharacter = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
     if (!PlayerCharacter || !BB) return;
 
@@ -220,7 +239,7 @@ void ACoolGuyAIController::OnHearNoise(APawn* PawnInstigator, const FVector& Loc
         BB->SetValueAsBool(CanHearPlayerKey, true);
         BB->SetValueAsVector(LastHeardLocationKey, Location);
 
-        // ÇöÀç »óÅÂ°¡ IdleÀÌ¸é InvestigatingÀ¸·Î º¯°æ
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â°ï¿½ Idleï¿½Ì¸ï¿½ Investigatingï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         ESearchStateInternal CurrentState = (ESearchStateInternal)BB->GetValueAsEnum(SearchStateKey);
         if (CurrentState == ESearchStateInternal::Idle)
         {
@@ -228,7 +247,7 @@ void ACoolGuyAIController::OnHearNoise(APawn* PawnInstigator, const FVector& Loc
             UE_LOG(LogTemp, Warning, TEXT("AI state changed to Investigating due to noise"));
         }
 
-        // Å¸ÀÌ¸Ó ¼³Á¤ - ¼Ò¸® °¨Áö »óÅÂ ÃÊ±âÈ­
+        // Å¸ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ - ï¿½Ò¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
         FTimerHandle TimerHandle;
         GetWorld()->GetTimerManager().SetTimer(TimerHandle, [this]()
             {
@@ -236,7 +255,7 @@ void ACoolGuyAIController::OnHearNoise(APawn* PawnInstigator, const FVector& Loc
                 {
                     BB->SetValueAsBool(CanHearPlayerKey, false);
 
-                    // ÇÃ·¹ÀÌ¾î¸¦ ÃßÀû ÁßÀÌ ¾Æ´Ï¶ó¸é »óÅÂ ÃÊ±âÈ­
+                    // ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´Ï¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
                     ESearchStateInternal CurrentState = (ESearchStateInternal)BB->GetValueAsEnum(SearchStateKey);
                     if (CurrentState == ESearchStateInternal::Investigating)
                     {
@@ -247,8 +266,8 @@ void ACoolGuyAIController::OnHearNoise(APawn* PawnInstigator, const FVector& Loc
             }, 5.0f, false);
     }
 }
-
-// ReportNoiseEvent ÇÔ¼ö ±¸Çö
+*/
+// ReportNoiseEvent ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 void ACoolGuyAIController::ReportNoiseEvent(FVector NoiseLocation, float Loudness, float MaxRange)
 {
     UAISense_Hearing::ReportNoiseEvent(

@@ -323,14 +323,14 @@ AEnemy_TESTGuard::~AEnemy_TESTGuard() {}
 // End Class AEnemy_TESTGuard
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_Enemy_TESTGuard_h_Statics
+struct Z_CompiledInDeferFile_FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_Enemy_TESTGuard_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
 		{ Z_Construct_UClass_AEnemy_TESTGuard, AEnemy_TESTGuard::StaticClass, TEXT("AEnemy_TESTGuard"), &Z_Registration_Info_UClass_AEnemy_TESTGuard, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AEnemy_TESTGuard), 50874464U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_Enemy_TESTGuard_h_3362644899(TEXT("/Script/SCC_UEAI_Lecture"),
-	Z_CompiledInDeferFile_FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_Enemy_TESTGuard_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_Enemy_TESTGuard_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_Enemy_TESTGuard_h_3362644899(TEXT("/Script/SCC_UEAI_Lecture"),
+	Z_CompiledInDeferFile_FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_Enemy_TESTGuard_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_Enemy_TESTGuard_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

@@ -5,10 +5,10 @@
 
 AChaser_AIController::AChaser_AIController()
 {
-    // ¸Å ÇÁ·¹ÀÓ Æ½ È°¼ºÈ­
+    // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Æ½ È°ï¿½ï¿½È­
     PrimaryActorTick.bCanEverTick = true;
 
-    // ½Ã¾ß °¨Áö ¼³Á¤ »ý¼º
+    // ï¿½Ã¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     SightConfig = CreateDefaultSubobject<UAISenseConfig_Sight>(TEXT("SightConfig"));
     SightConfig->SightRadius = DetectionRadius;
     SightConfig->LoseSightRadius = LoseInterestRadius;
@@ -24,7 +24,7 @@ void AChaser_AIController::BeginPlay()
 {
     Super::BeginPlay();
 
-    // ÀÎÁö ÄÄÆ÷³ÍÆ® ÃÊ±âÈ­ ÈÄ ÄÄÆ÷³ÍÆ® ¼¼ÆÃ
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ê±ï¿½È­ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
     if (SightConfig && GetPerceptionComponent())
     {
         GetPerceptionComponent()->ConfigureSense(*SightConfig);
@@ -32,7 +32,7 @@ void AChaser_AIController::BeginPlay()
         GetPerceptionComponent()->OnTargetPerceptionUpdated.AddDynamic(this, &AChaser_AIController::OnPerceptionUpdated);
     }
 
-    // ±âº» Å¸°ÙÀ¸·Î ÇÃ·¹ÀÌ¾î ¼³Á¤ (¼±ÅÃÀû)
+    // ï¿½âº» Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
     ACharacter* PlayerCharacter = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
     if (PlayerCharacter)
     {
@@ -44,10 +44,10 @@ void AChaser_AIController::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
 
-    // »óÅÂ ¾÷µ¥ÀÌÆ®
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
     UpdateAIState();
 
-    // ÃßÀû ·ÎÁ÷
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     if (bIsChasing && TargetActor)
     {
         APawn* ControlledPawn = GetPawn();
@@ -55,16 +55,16 @@ void AChaser_AIController::Tick(float DeltaTime)
         {
             float Distance = FVector::Dist(ControlledPawn->GetActorLocation(), TargetActor->GetActorLocation());
 
-            // ÃßÀû °Å¸® ³»¿¡ ÀÖÀ» ¶§¸¸ ÃßÀû
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             if (Distance <= ChaseRadius)
             {
-                // ÇÃ·¹ÀÌ¾î¸¦ ÇâÇØ ÀÌµ¿
+                // ï¿½Ã·ï¿½ï¿½Ì¾î¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
                 MoveToActor(TargetActor, 100.0f);
 
-                // ¸¶Áö¸· À§Ä¡ °»½Å
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
                 LastKnownLocation = TargetActor->GetActorLocation();
 
-                // µð¹ö±× ½Ã°¢È­ (½Ã¹Ä·¹ÀÌ¼Ç Áß È®ÀÎ¿ë)
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½È­ (ï¿½Ã¹Ä·ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ È®ï¿½Î¿ï¿½)
 #if WITH_EDITOR
                 DrawDebugLine(
                     GetWorld(),
@@ -80,7 +80,7 @@ void AChaser_AIController::Tick(float DeltaTime)
             }
             else if (Distance > LoseInterestRadius)
             {
-                // ÃßÀû ÁßÁö
+                // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 StopChasing();
             }
         }
@@ -94,11 +94,11 @@ void AChaser_AIController::StartChasing(AActor* Target)
 
     if (Target)
     {
-        // ¸¶Áö¸· À§Ä¡ ¾÷µ¥ÀÌÆ®
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
         LastKnownLocation = Target->GetActorLocation();
     }
 
-    // »óÅÂ º¯°æ
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     CurrentState = EAIState::Chasing;
 }
 
@@ -107,7 +107,7 @@ void AChaser_AIController::StopChasing()
     bIsChasing = false;
     StopMovement();
 
-    // »óÅÂ º¯°æ
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     CurrentState = EAIState::Idle;
 }
 
@@ -151,17 +151,17 @@ void AChaser_AIController::UpdateAIState()
 
 void AChaser_AIController::OnPerceptionUpdated(AActor* Actor, FAIStimulus Stimulus)
 {
-    // ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍÀÎÁö È®ÀÎ
+    // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
     ACharacter* PlayerCharacter = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
 
     if (Actor == PlayerCharacter)
     {
         if (Stimulus.WasSuccessfullySensed())
         {
-            // ÇÃ·¹ÀÌ¾î °¨Áö ¼º°ø
+            // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             TargetActor = Actor;
 
-            // °Å¸®¿¡ µû¶ó »óÅÂ º¯°æ
+            // ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             APawn* ControlledPawn = GetPawn();
             if (ControlledPawn)
             {
@@ -179,13 +179,13 @@ void AChaser_AIController::OnPerceptionUpdated(AActor* Actor, FAIStimulus Stimul
         }
         else
         {
-            // ÇÃ·¹ÀÌ¾î °¨Áö ½ÇÆÐ (½Ã¾ß¿¡¼­ »ç¶óÁü)
+            // ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½Ã¾ß¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½)
             if (CurrentState == EAIState::Chasing)
             {
-                // ¸¶Áö¸·À¸·Î º» À§Ä¡·Î ÀÌµ¿
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½Ìµï¿½
                 MoveToLocation(LastKnownLocation, 50.0f);
 
-                // ÀÇ½É »óÅÂ·Î ÀüÈ¯
+                // ï¿½Ç½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯
                 CurrentState = EAIState::Suspicious;
             }
         }

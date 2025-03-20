@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define SCC_UEAI_LECTURE_Enemy_PoliceGuard_generated_h
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_Enemy_PoliceGuard_h_10_INCLASS_NO_PURE_DECLS \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_Enemy_PoliceGuard_h_10_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAEnemy_PoliceGuard(); \
 	friend struct Z_Construct_UClass_AEnemy_PoliceGuard_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(AEnemy_PoliceGuard)
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_Enemy_PoliceGuard_h_10_ENHANCED_CONSTRUCTORS \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_Enemy_PoliceGuard_h_10_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AEnemy_PoliceGuard(AEnemy_PoliceGuard&&); \
@@ -35,12 +35,12 @@ public: \
 	NO_API virtual ~AEnemy_PoliceGuard();
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_Enemy_PoliceGuard_h_7_PROLOG
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_Enemy_PoliceGuard_h_10_GENERATED_BODY \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_Enemy_PoliceGuard_h_7_PROLOG
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_Enemy_PoliceGuard_h_10_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_Enemy_PoliceGuard_h_10_INCLASS_NO_PURE_DECLS \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_Enemy_PoliceGuard_h_10_ENHANCED_CONSTRUCTORS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_Enemy_PoliceGuard_h_10_INCLASS_NO_PURE_DECLS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_Enemy_PoliceGuard_h_10_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -48,7 +48,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> SCC_UEAI_LECTURE_API UClass* StaticClass<class AEnemy_PoliceGuard>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_Enemy_PoliceGuard_h
+#define CURRENT_FILE_ID FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_Enemy_PoliceGuard_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

@@ -14,14 +14,14 @@ class SCC_UEAI_LECTURE_API AEnemy_PatrolGuard : public AEnemy_BaseGuard
 public:
 	AEnemy_PatrolGuard();
 
-	// Å¸°Ù Æ÷ÀÎÆ® Ã£±â
+	// Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® Ã£ï¿½ï¿½
 	UFUNCTION(BlueprintCallable, Category = "Player Capture")
 	void FindTargetPoints();
 
 	UFUNCTION(BlueprintCallable, Category = "AI Movement")
 	void MoveToTarget();
 
-	// BP¿¡¼­ È£Ãâ °¡´ÉÇÑ ÇÔ¼ö - ÀÌµ¿ ½ÃÀÛ
+	// BPï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ - ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
 	UFUNCTION(BlueprintCallable, Category = "AI Movement")
 	void StartMoving();
 
@@ -43,7 +43,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI Movement")
 	TArray<AActor*> FoundTargets;
 
-	// ÆÐÆ®·Ñ ·ÎÄÉÀÌ¼Ç ÅÂ±×
+	// ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ ï¿½Â±ï¿½
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI Movement")
 	FName PatrolLocationTag;
 
@@ -58,3 +58,4 @@ private:
 	UPROPERTY()
 	bool bIsMoving;
 };
+

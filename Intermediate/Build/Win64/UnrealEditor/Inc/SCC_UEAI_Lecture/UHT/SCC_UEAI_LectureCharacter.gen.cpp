@@ -376,6 +376,42 @@ DEFINE_FUNCTION(ASCC_UEAILectureCharacter::execStartMoving)
 }
 // End Class ASCC_UEAILectureCharacter Function StartMoving
 
+// Begin Class ASCC_UEAILectureCharacter Function StopAIDetection
+struct Z_Construct_UFunction_ASCC_UEAILectureCharacter_StopAIDetection_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "Category", "AI" },
+#if !UE_BUILD_SHIPPING
+		{ "Comment", "// \xec\xb1\x95\xed\x84\xb0""3 \xea\xb3\xbc\xec\xa0\x9c\n// \xed\x83\x90\xec\xa7\x80 \xec\xa4\x91\xec\xa7\x80 \xed\x95\xa8\xec\x88\x98\n" },
+#endif
+		{ "ModuleRelativePath", "SCC_UEAI_LectureCharacter.h" },
+#if !UE_BUILD_SHIPPING
+		{ "ToolTip", "\xec\xb1\x95\xed\x84\xb0""3 \xea\xb3\xbc\xec\xa0\x9c\n\xed\x83\x90\xec\xa7\x80 \xec\xa4\x91\xec\xa7\x80 \xed\x95\xa8\xec\x88\x98" },
+#endif
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_ASCC_UEAILectureCharacter_StopAIDetection_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_ASCC_UEAILectureCharacter, nullptr, "StopAIDetection", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x04020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_ASCC_UEAILectureCharacter_StopAIDetection_Statics::Function_MetaDataParams), Z_Construct_UFunction_ASCC_UEAILectureCharacter_StopAIDetection_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_ASCC_UEAILectureCharacter_StopAIDetection()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_ASCC_UEAILectureCharacter_StopAIDetection_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(ASCC_UEAILectureCharacter::execStopAIDetection)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->StopAIDetection();
+	P_NATIVE_END;
+}
+// End Class ASCC_UEAILectureCharacter Function StopAIDetection
+
 // Begin Class ASCC_UEAILectureCharacter Function TryPersuade
 struct Z_Construct_UFunction_ASCC_UEAILectureCharacter_TryPersuade_Statics
 {
@@ -418,6 +454,7 @@ void ASCC_UEAILectureCharacter::StaticRegisterNativesASCC_UEAILectureCharacter()
 		{ "OnMoveCompleted", &ASCC_UEAILectureCharacter::execOnMoveCompleted },
 		{ "PlayerCaptured", &ASCC_UEAILectureCharacter::execPlayerCaptured },
 		{ "StartMoving", &ASCC_UEAILectureCharacter::execStartMoving },
+		{ "StopAIDetection", &ASCC_UEAILectureCharacter::execStopAIDetection },
 		{ "TryPersuade", &ASCC_UEAILectureCharacter::execTryPersuade },
 	};
 	FNativeFunctionRegistrar::RegisterFunctions(Class, Funcs, UE_ARRAY_COUNT(Funcs));
@@ -798,6 +835,7 @@ struct Z_Construct_UClass_ASCC_UEAILectureCharacter_Statics
 		{ &Z_Construct_UFunction_ASCC_UEAILectureCharacter_OnMoveCompleted, "OnMoveCompleted" }, // 2827060042
 		{ &Z_Construct_UFunction_ASCC_UEAILectureCharacter_PlayerCaptured, "PlayerCaptured" }, // 4020438424
 		{ &Z_Construct_UFunction_ASCC_UEAILectureCharacter_StartMoving, "StartMoving" }, // 2514289009
+		{ &Z_Construct_UFunction_ASCC_UEAILectureCharacter_StopAIDetection, "StopAIDetection" }, // 15787154
 		{ &Z_Construct_UFunction_ASCC_UEAILectureCharacter_TryPersuade, "TryPersuade" }, // 165531158
 	};
 	static_assert(UE_ARRAY_COUNT(FuncInfo) < 2048);
@@ -966,18 +1004,18 @@ ASCC_UEAILectureCharacter::~ASCC_UEAILectureCharacter() {}
 // End Class ASCC_UEAILectureCharacter
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_Statics
+struct Z_CompiledInDeferFile_FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_Statics
 {
 	static constexpr FStructRegisterCompiledInInfo ScriptStructInfo[] = {
 		{ FSkillState::StaticStruct, Z_Construct_UScriptStruct_FSkillState_Statics::NewStructOps, TEXT("SkillState"), &Z_Registration_Info_UScriptStruct_SkillState, CONSTRUCT_RELOAD_VERSION_INFO(FStructReloadVersionInfo, sizeof(FSkillState), 223194883U) },
 	};
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_ASCC_UEAILectureCharacter, ASCC_UEAILectureCharacter::StaticClass, TEXT("ASCC_UEAILectureCharacter"), &Z_Registration_Info_UClass_ASCC_UEAILectureCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ASCC_UEAILectureCharacter), 161105885U) },
+		{ Z_Construct_UClass_ASCC_UEAILectureCharacter, ASCC_UEAILectureCharacter::StaticClass, TEXT("ASCC_UEAILectureCharacter"), &Z_Registration_Info_UClass_ASCC_UEAILectureCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(ASCC_UEAILectureCharacter), 3419459839U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_1239083978(TEXT("/Script/SCC_UEAI_Lecture"),
-	Z_CompiledInDeferFile_FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_Statics::ClassInfo),
-	Z_CompiledInDeferFile_FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_Statics::ScriptStructInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_1586534731(TEXT("/Script/SCC_UEAI_Lecture"),
+	Z_CompiledInDeferFile_FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_Statics::ClassInfo),
+	Z_CompiledInDeferFile_FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_Statics::ScriptStructInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_SCC_UEAI_LectureCharacter_h_Statics::ScriptStructInfo),
 	nullptr, 0);
 // End Registration
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

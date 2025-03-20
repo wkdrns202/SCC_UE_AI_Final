@@ -16,7 +16,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #define SCC_UEAI_LECTURE_EEmotionalState_generated_h
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_EEmotionalState_h
+#define CURRENT_FILE_ID FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_EEmotionalState_h
 
 
 #define FOREACH_ENUM_EEMOTIONALSTATE(op) \

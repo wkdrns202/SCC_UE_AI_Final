@@ -9,12 +9,12 @@
 
 AEnemy_AIController::AEnemy_AIController()
 {
-    // AI ÀÎÁö ÄÄÆ÷³ÍÆ® »ý¼º
+    // AI ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
     AIPerceptionComponent = CreateDefaultSubobject<UAIPerceptionComponent>(TEXT("AIPerceptionComponent"));
 
-    // ½Ã°¢ °¨Áö ¼³Á¤
+    // ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     SightConfig = CreateDefaultSubobject<UAISenseConfig_Sight>(TEXT("SightConfig"));
-    SightConfig->SightRadius = 1000.0f;  // ½Ã¾ß ¹Ý°æ
+    SightConfig->SightRadius = 1000.0f;  // ï¿½Ã¾ï¿½ ï¿½Ý°ï¿½
     SightConfig->LoseSightRadius = 1200.0f;
     SightConfig->PeripheralVisionAngleDegrees = 90.0f;
     SightConfig->SetMaxAge(5.0f);
@@ -22,7 +22,7 @@ AEnemy_AIController::AEnemy_AIController()
     SightConfig->DetectionByAffiliation.bDetectNeutrals = true;
     SightConfig->DetectionByAffiliation.bDetectFriendlies = false;
 
-    // Ã»°¢ °¨Áö ¼³Á¤
+    // Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     HearingConfig = CreateDefaultSubobject<UAISenseConfig_Hearing>(TEXT("HearingConfig"));
     HearingConfig->HearingRange = 1500.0f;
     HearingConfig->SetMaxAge(5.0f);
@@ -44,25 +44,25 @@ void AEnemy_AIController::OnPossess(APawn* InPawn)
 
 void AEnemy_AIController::SetupPerceptionSystem()
 {
-    // °¨Áö ½Ã½ºÅÛ ¼³Á¤
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Ã½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     if (AIPerceptionComponent)
     {
-        // ½Ã°¢ °¨Áö Ãß°¡
+        // ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
         AIPerceptionComponent->ConfigureSense(*SightConfig);
         AIPerceptionComponent->SetDominantSense(SightConfig->GetSenseImplementation());
 
-        // Ã»°¢ °¨Áö Ãß°¡
+        // Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
         AIPerceptionComponent->ConfigureSense(*HearingConfig);
 
-        // °¨Áö ÀÌº¥Æ® ¹ÙÀÎµù (ÇÊ¿äÇÑ °æ¿ì)
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½Îµï¿½ (ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½)
         AIPerceptionComponent->OnTargetPerceptionUpdated.AddDynamic(this, &AEnemy_AIController::OnTargetPerceptionUpdated);
     }
 }
 
-// °¨ÁöµÉ °æ¿ì ºùÀÇÇÑ PawnÀÇ OnTargetPerceptionUpdated() È£Ãâ
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Pawnï¿½ï¿½ OnTargetPerceptionUpdated() È£ï¿½ï¿½
 void AEnemy_AIController::OnTargetPerceptionUpdated(AActor* Actor, FAIStimulus Stimulus)
 {
-    // Enemy_BaseGuard Ä³¸¯ÅÍ ÂüÁ¶ °¡Á®¿À±â
+    // Enemy_BaseGuard Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     AEnemy_BaseGuard* Guard = Cast<AEnemy_BaseGuard>(GetPawn());
     if (Guard)
     {

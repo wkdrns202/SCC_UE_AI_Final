@@ -11,6 +11,7 @@
 #include "InputActionValue.h"
 #include "Kismet/GameplayStatics.h"
 #include "NavigationSystem.h"
+#include "AI_DetectionGuard.h" // ì±•í„°4 ê³¼ì œ
 #include "Navigation/PathFollowingComponent.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
@@ -53,25 +54,25 @@ ASCC_UEAILectureCharacter::ASCC_UEAILectureCharacter()
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
 
-	// ³×ºñ°ÔÀÌ¼Ç Invoker °ü·Ã º¯¼ö ÃÊ±âÈ­
+	// ï¿½×ºï¿½ï¿½ï¿½Ì¼ï¿½ Invoker ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
 	NavGenerationRadius = 100.0f;
 	NavRemovalRadius = 150.0f;
 
-	// Navigation Invoker ÄÄÆ÷³ÍÆ® »ı¼º ¹× ÃÊ±â°ª ¼Â¾÷.
+	// Navigation Invoker ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê±â°ª ï¿½Â¾ï¿½.
 	NavInvoker = CreateDefaultSubobject<UNavigationInvokerComponent>(TEXT("NavInvoker"));
-	// SetGenerationRadii ÇÔ¼ö¸¦ »ç¿ëÇÏ¿© »ı¼º ¹İ°æ°ú Á¦°Å ¹İ°æ ¼³Á¤
+	// SetGenerationRadii ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½İ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½İ°ï¿½ ï¿½ï¿½ï¿½ï¿½
 	NavInvoker->SetGenerationRadii(NavGenerationRadius, NavRemovalRadius);
 
-	// AI Modifier Å×½ºÆ® °ü·Ã º¯¼ö ÃÊ±âÈ­
+	// AI Modifier ï¿½×½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
 	bIsSucceeded = false;
 	bIsMoving = false;
-	AcceptanceRadius = 50.0f; // ºí·çÇÁ¸°Æ®¿¡¼­ 5.0À¸·Î ¼³Á¤µÈ °ÍÀ¸·Î º¸ÀÌÁö¸¸, ¾ğ¸®¾ó ´ÜÀ§·Î º¯È¯
+	AcceptanceRadius = 50.0f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ 5.0ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ğ¸®¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 	NoiseEmitterComponent = CreateDefaultSubobject<UPawnNoiseEmitterComponent>(TEXT("NoiseEmitterComponent"));
 
-	// ½ºÅ³°ü·Ã °ª ÃÊ±âÈ­
+	// ï¿½ï¿½Å³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê±ï¿½È­
 	SilentMovementSkill.Duration = 10.0f;
 	SilentMovementSkill.ManaCost = 10.0f;
 
@@ -81,38 +82,38 @@ ASCC_UEAILectureCharacter::ASCC_UEAILectureCharacter()
 	InvulnerabilitySkill.Duration = 10.0f;
 	InvulnerabilitySkill.ManaCost = 0.0f;
 
-	// ½ºÅÚ½º ¸ğµå ¹× ¼ÒÀ½ °ü·Ã ÇÃ·¡±× ÃÊ±âÈ­
+	// ï¿½ï¿½ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
 	bIsInStealthMode = false;
 	bCanMakeNoise = true;
 
-	// ÇÃ·¹ÀÌ¾î »ı¸í
+	// ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½
 	Lives = 3;
 }
 
-// AI Modifier Å×½ºÆ® À§ÇØ BeginPlay() Ãß°¡
+// AI Modifier ï¿½×½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ BeginPlay() ï¿½ß°ï¿½
 void ASCC_UEAILectureCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	// AI ÄÁÆ®·Ñ·¯ Ã£±â
+	// AI ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ Ã£ï¿½ï¿½
 	AIController = Cast<AAIController>(GetController());
-	// AI ÄÁÆ®·Ñ·¯°¡ ¾øÀ¸¸é ÀÚµ¿À¸·Î »ı¼ºÇÏÁö ¾ÊÀ½ (ÇÊ¿ä½Ã »ı¼º ÄÚµå Ãß°¡)
+	// AI ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½Ê¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ ï¿½ß°ï¿½)
 	if (AIController)
 	{
-		// µğ¹ö±ë ¿¡·¯ ¹æÁö¸¦ À§ÇØ ¾ğºñÀÎµù ÄÚµå ½ÇÇà
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Îµï¿½ ï¿½Úµï¿½ ï¿½ï¿½ï¿½ï¿½
 		AIController->ReceiveMoveCompleted.RemoveDynamic(this, &ASCC_UEAILectureCharacter::OnMoveCompleted);
-		// ÀÌµ¿ ¿Ï·á ÀÌº¥Æ® µ¨¸®°ÔÀÌÆ® ¹ÙÀÎµù
+		// ï¿½Ìµï¿½ ï¿½Ï·ï¿½ ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Îµï¿½
 		AIController->ReceiveMoveCompleted.AddDynamic(this, &ASCC_UEAILectureCharacter::OnMoveCompleted);
 
-		// Å¸°Ù Æ÷ÀÎÆ® Ã£±â
+		// Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® Ã£ï¿½ï¿½
 		FindTargetPoints();
 		StartMoving();
 	}
 
 	GetWorld()->GetTimerManager().SetTimer(ManaRegenTimerHandle, this, &ASCC_UEAILectureCharacter::RegenerateMana, ManaRegenInterval, true);
 
-	GameMode = GetWorld()->GetAuthGameMode(); // Ä³½ºÆÃ ¾øÀÌ ±âº» Å¸ÀÔÀ¸·Î ¹ŞÀ½
+	GameMode = GetWorld()->GetAuthGameMode(); // Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½âº» Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-	// ¿øº» ¸ÓÆ¼¸®¾ó ÀúÀå
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	OriginalMaterials.Empty();
 	USkeletalMeshComponent* MeshComp = GetMesh();
 	if (MeshComp)
@@ -122,12 +123,12 @@ void ASCC_UEAILectureCharacter::BeginPlay()
 			UMaterialInterface* Material = MeshComp->GetMaterial(i);
 			OriginalMaterials.Add(Material);
 
-			// ·Î±× Ãß°¡
+			// ï¿½Î±ï¿½ ï¿½ß°ï¿½
 			UE_LOG(LogTemplateCharacter, Warning, TEXT("Saved original material %d: %s"),
 				i, Material ? *Material->GetName() : TEXT("null"));
 		}
 
-		// ÃÑ ¸ÓÆ¼¸®¾ó °³¼ö ·Î±×
+		// ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î±ï¿½
 		UE_LOG(LogTemplateCharacter, Warning, TEXT("Total original materials saved: %d"), OriginalMaterials.Num());
 	}
 }
@@ -136,7 +137,7 @@ void ASCC_UEAILectureCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	// ½ºÅ³ Å¸ÀÌ¸Ó ¾÷µ¥ÀÌÆ®
+	// ï¿½ï¿½Å³ Å¸ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 	if (SilentMovementSkill.bIsActive)
 	{
 		SilentMovementSkill.RemainingTime -= DeltaTime;
@@ -164,7 +165,7 @@ void ASCC_UEAILectureCharacter::Tick(float DeltaTime)
 		}
 	}
 
-	// ¶Û ¶§ ¼ÒÀ½ ¹ß»ı (¼Ò¸® Á¦°Å ½ºÅ³ÀÌ È°¼ºÈ­µÇÁö ¾ÊÀº °æ¿ì)
+	// ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ (ï¿½Ò¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³ï¿½ï¿½ È°ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½)
 	if (!SilentMovementSkill.bIsActive && GetVelocity().Size() > 10.0f && GetCharacterMovement()->IsMovingOnGround())
 	{
 		float MovementNoise = DefaultMovementNoiseLoudness;
@@ -173,7 +174,7 @@ void ASCC_UEAILectureCharacter::Tick(float DeltaTime)
 }
 
 //////////////////////////////////////////////////////////////////////////
-// AI Modifier Texst ÀÎÇ² ·ÎÁ÷ ±¸Çö (Invoker·ÎÁ÷¿¡¼­ ¼öÁ¤)
+// AI Modifier Texst ï¿½ï¿½Ç² ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (Invokerï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 
 void ASCC_UEAILectureCharacter::NotifyControllerChanged()
 {
@@ -187,9 +188,9 @@ void ASCC_UEAILectureCharacter::NotifyControllerChanged()
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
 	}
-	else // Input Mapping Context°¡ ¾ø´Â °æ¿ì(AIÀÎ °æ¿ì) ÄÁÆ®·Ñ·¯ Ãß°¡.
+	else // Input Mapping Contextï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½(AIï¿½ï¿½ ï¿½ï¿½ï¿½) ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ ï¿½ß°ï¿½.
 	{
-		// ÄÁÆ®·Ñ·¯°¡ º¯°æµÇ¾ú°í AI ÄÁÆ®·Ñ·¯ÀÎ °æ¿ì
+		// ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ AI ï¿½ï¿½Æ®ï¿½Ñ·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		AIController = Cast<AAIController>(Controller);
 		if (AIController)
 		{
@@ -242,7 +243,7 @@ void ASCC_UEAILectureCharacter::Jump()
 {
 	Super::Jump();
 	UE_LOG(LogTemp, Warning, TEXT("Player Jump!##"));
-	// Á¡ÇÁ ½Ã ³ëÀÌÁî »ı¼º
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	MakeNoise(3.0f, GetActorLocation());
 }
 
@@ -253,7 +254,7 @@ void ASCC_UEAILectureCharacter::MakeNoise(float Loudness, FVector NoiseLocation)
 		return;
 	}
 
-	// NoiseEmitterComponent¸¸ »ç¿ëÇÏ¿© ¼ÒÀ½ ¹ß»ı
+	// NoiseEmitterComponentï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½
 	if (NoiseEmitterComponent)
 	{
 		NoiseEmitterComponent->MakeNoise(this, Loudness, NoiseLocation);
@@ -298,11 +299,11 @@ void ASCC_UEAILectureCharacter::Look(const FInputActionValue& Value)
 }
 
 //////////////////////////////////////////////////////////////////////////
-// AI Modifier Å×½ºÆ®¿ë Movement Logic ±¸Çö.
+// AI Modifier ï¿½×½ï¿½Æ®ï¿½ï¿½ Movement Logic ï¿½ï¿½ï¿½ï¿½.
 
 void ASCC_UEAILectureCharacter::FindTargetPoints()
 {
-	// Å¸°Ù Æ÷ÀÎÆ®°¡ ¼³Á¤µÇ¾î ÀÖÁö ¾ÊÀº °æ¿ì ÀÚµ¿À¸·Î Ã£±â
+	// Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½
 	if (!Target || !Target2)
 	{
 		TArray<AActor*> FoundTargets;
@@ -324,7 +325,7 @@ void ASCC_UEAILectureCharacter::FindTargetPoints()
 
 void ASCC_UEAILectureCharacter::StartMoving()
 {
-	// Å¸°Ù Æ÷ÀÎÆ®¸¦ Ã£°í ÀÌµ¿ ½ÃÀÛ
+	// Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
 	FindTargetPoints();
 	MoveToTarget();
 }
@@ -339,26 +340,26 @@ void ASCC_UEAILectureCharacter::MoveToTarget()
 
 	if (bIsMoving)
 	{
-		// ÀÌ¹Ì ÀÌµ¿ ÁßÀÌ¸é Áßº¹ È£Ãâ ¹æÁö
+		// ï¿½Ì¹ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ßºï¿½ È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		return;
 	}
 
-	// IsSucceeded °ª¿¡ µû¶ó Å¸°Ù ¼±ÅÃ
+	// IsSucceeded ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	AActor* SelectedTarget = bIsSucceeded ? Target : Target2;
 
 	if (SelectedTarget)
 	{
 		bIsMoving = true;
 
-		// AI MoveTo ÇÔ¼ö È£Ãâ
+		// AI MoveTo ï¿½Ô¼ï¿½ È£ï¿½ï¿½
 		FVector TargetLocation = SelectedTarget->GetActorLocation();
 		EPathFollowingRequestResult::Type MoveResult = AIController->MoveToLocation(
 			TargetLocation,
 			AcceptanceRadius,
-			true,  // ¸ñÀûÁö¿¡ ¿À¹ö·¦ µÇ¸é µµÂøÀ¸·Î ÆÇÁ¤ÇÒÁö ¿©ºÎ.
-			true,  // °æ·Î Ã£±â »ç¿ë
-			false, // ÇÁ·ÎÁ§¼Ç »ç¿ë ¾ÈÇÔ
-			true   // ³×ºñ°ÔÀÌ¼Ç µ¥ÀÌÅÍ »ç¿ë
+			true,  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+			true,  // ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½
+			false, // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+			true   // ï¿½×ºï¿½ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		);
 
 		if (MoveResult == EPathFollowingRequestResult::Failed)
@@ -382,30 +383,30 @@ void ASCC_UEAILectureCharacter::OnMoveCompleted(FAIRequestID RequestID, EPathFol
 {
 	bIsMoving = false;
 
-	// ÀÌµ¿ °á°ú¿¡ µû¶ó IsSucceeded °ª Åä±Û
+	// ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ IsSucceeded ï¿½ï¿½ ï¿½ï¿½ï¿½
 	if (Result == EPathFollowingResult::Success)
 	{
-		// ¼º°øÀûÀ¸·Î ÀÌµ¿ ¿Ï·áµÊ
-		bIsSucceeded = !bIsSucceeded;  // °ª Åä±Û
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½Ï·ï¿½ï¿½
+		bIsSucceeded = !bIsSucceeded;  // ï¿½ï¿½ ï¿½ï¿½ï¿½
 		UE_LOG(LogTemplateCharacter, Display, TEXT("Move completed successfully. IsSucceeded toggled to: %s"),
 			bIsSucceeded ? TEXT("True") : TEXT("False"));
 
-		// Áö¿¬ ÈÄ ´ÙÀ½ ÀÌµ¿ ½ÃÀÛ
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
 		FTimerHandle TimerHandle;
 		GetWorldTimerManager().SetTimer(TimerHandle, this, &ASCC_UEAILectureCharacter::MoveToTarget, 0.5f, false);
 	}
 	else
 	{
-		// ÀÌµ¿ ½ÇÆĞ
+		// ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
 		UE_LOG(LogTemplateCharacter, Warning, TEXT("Move failed with result: %d"), static_cast<int32>(Result));
 
-		// ½ÇÆĞ ½Ã¿¡µµ ´Ù½Ã ½Ãµµ
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¿ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½Ãµï¿½
 		FTimerHandle TimerHandle;
 		GetWorldTimerManager().SetTimer(TimerHandle, this, &ASCC_UEAILectureCharacter::MoveToTarget, 1.0f, false);
 	}
 }
 
-// ½ºÅ³ µî Ãß°¡ ÄÚµå
+// ï¿½ï¿½Å³ ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½Úµï¿½
 
 void ASCC_UEAILectureCharacter::RegenerateMana()
 {
@@ -415,28 +416,28 @@ void ASCC_UEAILectureCharacter::RegenerateMana()
 
 void ASCC_UEAILectureCharacter::ActivateSilentMovement()
 {
-	// ÀÌ¹Ì È°¼ºÈ­µÈ °æ¿ì Áßº¹ »ç¿ë ¹æÁö
+	// ï¿½Ì¹ï¿½ È°ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ßºï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if (SilentMovementSkill.bIsActive)
 	{
 		return;
 	}
-	// ¸¶³ª°¡ ÃæºĞÇÑÁö È®ÀÎ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 	if (CurrentMana < SilentMovementSkill.ManaCost)
 	{
 		return;
 	}
 
-	// ¸¶³ª ¼Ò¸ğ
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½
 	CurrentMana -= SilentMovementSkill.ManaCost;
 
-	// ½ºÅ³ È°¼ºÈ­
+	// ï¿½ï¿½Å³ È°ï¿½ï¿½È­
 	SilentMovementSkill.bIsActive = true;
 	SilentMovementSkill.RemainingTime = SilentMovementSkill.Duration;
 
-	// ÀÌµ¿ ¼Óµµ °¨¼Ò
+	// ï¿½Ìµï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½
 	GetCharacterMovement()->MaxWalkSpeed = SlowWalkSpeed;
 
-	// ¼ÒÀ½ ¹ß»ı ºÒ°¡ »óÅÂ ¼³Á¤
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ ï¿½Ò°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	bCanMakeNoise = false;
 
 	UE_LOG(LogTemplateCharacter, Display, TEXT("Silent Movement Activated for %.1f s"), SilentMovementSkill.Duration);
@@ -452,7 +453,7 @@ void ASCC_UEAILectureCharacter::EndSilentMovement()
 	SilentMovementSkill.bIsActive = false;
 	GetCharacterMovement()->MaxWalkSpeed = DefaultWalkSpeed;
 
-	// ¼ÒÀ½ ¹ß»ı °¡´É »óÅÂ·Î º¹¿ø
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½ï¿½ï¿½
 	bCanMakeNoise = true;
 
 	UE_LOG(LogTemplateCharacter, Display, TEXT("Silent Movement ended"));
@@ -460,36 +461,36 @@ void ASCC_UEAILectureCharacter::EndSilentMovement()
 
 void ASCC_UEAILectureCharacter::ActivateStealth()
 {
-	// ÀÌ¹Ì È°¼ºÈ­µÈ °æ¿ì Áßº¹»ç¿ë ¹æÁö
+	// ï¿½Ì¹ï¿½ È°ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ßºï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if (StealthSkill.bIsActive)
 	{
 		return;
 	}
 
-	// ¸¶³ª°¡ ÃæºĞÇÑÁö È®ÀÎ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 	if (CurrentMana < StealthSkill.ManaCost)
 	{
 		UE_LOG(LogTemplateCharacter, Display, TEXT("You have not enough Mana"));
 		return;
 	}
 
-	// ¸¶³ª ¼Ò¸ğ
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½
 	CurrentMana -= StealthSkill.ManaCost;
 
-	// ½ºÅ³ È°¼ºÈ­
+	// ï¿½ï¿½Å³ È°ï¿½ï¿½È­
 	StealthSkill.bIsActive = true;
 	StealthSkill.RemainingTime = StealthSkill.Duration;
 
-	// ½ºÅÚ½º ¸ğµå ÇÃ·¡±× È°¼ºÈ­
+	// ï¿½ï¿½ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ È°ï¿½ï¿½È­
 	bIsInStealthMode = true;
 
-	// ½ºÅÚ½º È¿°ú Àû¿ë (½ºÅÚ½º ¸ÓÆ¼¸®¾ó)
+	// ï¿½ï¿½ï¿½Ú½ï¿½ È¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½Ú½ï¿½ ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½)
 	USkeletalMeshComponent* MeshComp = GetMesh();
 	if (MeshComp && StealthMaterial)
 	{
 		for (int32 i = 0; i < MeshComp->GetNumMaterials(); i++)
 		{
-			UMaterialInstanceDynamic* DynamicMaterial = UMaterialInstanceDynamic::Create(StealthMaterial, this); // StealthMaterialÀº Ä³¸¯ÅÍ ºí·çÇÁ¸°Æ® ³» Player Skill ¸ÓÆ¼¸®¾ó¿¡¼­ ÇÒ´ç
+			UMaterialInstanceDynamic* DynamicMaterial = UMaterialInstanceDynamic::Create(StealthMaterial, this); // StealthMaterialï¿½ï¿½ Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ Player Skill ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ó¿¡¼ï¿½ ï¿½Ò´ï¿½
 			if (DynamicMaterial)
 			{
 				MeshComp->SetMaterial(i, DynamicMaterial);
@@ -509,10 +510,10 @@ void ASCC_UEAILectureCharacter::EndStealth()
 
 	StealthSkill.bIsActive = false;
 
-	// ½ºÅÚ½º ¸ğµå ÇÃ·¡±× ºñÈ°¼ºÈ­
+	// ï¿½ï¿½ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
 	bIsInStealthMode = false;
 
-	// ¿ø·¡ ¸ÓÆ¼¸®¾ó·Î º¹¿ø
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	USkeletalMeshComponent* MeshComp = GetMesh();
 	if (MeshComp && OriginalMaterials.Num() > 0)
 	{
@@ -529,19 +530,19 @@ void ASCC_UEAILectureCharacter::EndStealth()
 	UE_LOG(LogTemplateCharacter, Display, TEXT("Stealth ended"));
 }
 
-// CapturedByAI_Implementation µî ÀÎÅÍÆäÀÌ½º¹ß ÇÔ¼ö ±¸Çö
+// CapturedByAI_Implementation ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 void ASCC_UEAILectureCharacter::CapturedByAI_Implementation()
 {
-	// AI °æÂû¿¡ ÀÇÇØ È£ÃâµÇ´Â ÇÔ¼ö.
+	// AI ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½Ç´ï¿½ ï¿½Ô¼ï¿½.
 
-	// ¹«Àû »óÅÂÀÌ¸é Ä¸Ã³ ¹«½Ã
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ Ä¸Ã³ ï¿½ï¿½ï¿½ï¿½
 	if (bIsInvulnerable)
 	{
 		UE_LOG(LogTemplateCharacter, Display, TEXT("AI capture attempt ignored - Player is invulnerable"));
 		return;
 	}
 
-	// ½ºÅÚ½º »óÅÂÀÌ¸é Ä¸Ã³ ¹«½Ã
+	// ï¿½ï¿½ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ Ä¸Ã³ ï¿½ï¿½ï¿½ï¿½
 	if (StealthSkill.bIsActive)
 	{
 		UE_LOG(LogTemplateCharacter, Display, TEXT("AI capture attempt ignored - Player is in stealth"));
@@ -550,9 +551,9 @@ void ASCC_UEAILectureCharacter::CapturedByAI_Implementation()
 
 	bIsCaptured = true;
 	CaptureTime = GetWorld()->GetTimeSeconds();
-	bIsInvulnerable = true; // ÀÏ½Ã ¹«ÀûÃ³¸®.
+	bIsInvulnerable = true; // ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½.
 	InvulnerabilitySkill.bIsActive = true;
-	if (!bIsTimerSet) // Å¸ÀÌ¸Ó Áßº¹È£Ãâ ¹æÁö¸¦ À§ÇÑ ¾ÈÀüÄÚµå
+	if (!bIsTimerSet) // Å¸ï¿½Ì¸ï¿½ ï¿½ßºï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½
 	{
 		bIsTimerSet = true;
 		UE_LOG(LogTemplateCharacter, Display, TEXT("Player captured by AI! Use persuasion skill within %.1f seconds!"), PersuasionWindow);
@@ -560,24 +561,24 @@ void ASCC_UEAILectureCharacter::CapturedByAI_Implementation()
 	}
 }
 
-// ¼³µæ ¼º°ø¿©ºÎ È®ÀÎ ÈÄ ÇÃ·¹ÀÌ¾î »ı¸í·Â À¯Áö/°¨¼Ò ·ÎÁ÷ ÀÛµ¿
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ûµï¿½
 void ASCC_UEAILectureCharacter::PlayerCaptured()
 {
-	bIsTimerSet = false; // Å¸ÀÌ¸Ó ¼Â false·Î ÀüÈ¯
+	bIsTimerSet = false; // Å¸ï¿½Ì¸ï¿½ ï¿½ï¿½ falseï¿½ï¿½ ï¿½ï¿½È¯
 	if (!bIsSucceededPersuasion)
 	{
-		// ÇÃ·¹ÀÌ¾î Ä¸Ã³ Ã³¸® (°ÔÀÓÇÃ·¹ÀÌ È¿°ú, UI Ç¥½Ã µî)
-		// °ÔÀÓ¸ğµå ÀÎÅÍÆäÀÌ½º È®ÀÎ ¹× È£Ãâ
+		// ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ Ä¸Ã³ Ã³ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ È¿ï¿½ï¿½, UI Ç¥ï¿½ï¿½ ï¿½ï¿½)
+		// ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ È£ï¿½ï¿½
 		if (GameMode->GetClass()->ImplementsInterface(UGameRulesInterface::StaticClass()))
 		{
-			// ÇÃ·¹ÀÌ¾î Ä¸Ã³ º¸°í
+			// ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ Ä¸Ã³ ï¿½ï¿½ï¿½ï¿½
 			IGameRulesInterface::Execute_ReportPlayerCapture(GameMode, this, nullptr);
 
-			// ÇöÀç ¸ñ¼û ¼ö °¡Á®¿À±â ¹× ·Î±× Ãâ·Â
+			// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Î±ï¿½ ï¿½ï¿½ï¿½
 			int32 CurrentLives = IGameRulesInterface::Execute_ReportCurrentLives(GameMode);
 			UE_LOG(LogTemp, Error, TEXT("Player Captured. The remaining live(s) is %d"), CurrentLives);
 
-			bIsInvulnerable = false; // ÀÏ½Ã ¹«ÀûÃ³¸®.
+			bIsInvulnerable = false; // ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã³ï¿½ï¿½.
 		}
 		else
 		{
@@ -588,7 +589,7 @@ void ASCC_UEAILectureCharacter::PlayerCaptured()
 		Lives--;
 		UE_LOG(LogTemplateCharacter, Display, TEXT("You just loose a life. Remaining live(s) is %d"), Lives);
 		bIsTimerSet = false;
-		// °ÔÀÓ¿À¹ö È®ÀÎ
+		// ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 		if (Lives <= 3)
 		{
 			GameOver();
@@ -600,31 +601,31 @@ void ASCC_UEAILectureCharacter::PlayerCaptured()
 
 void ASCC_UEAILectureCharacter::TryPersuade()
 {
-	// ÀâÈ÷Áö ¾ÊÀº »óÅÂ¸é ¼³µæ ºÒ°¡
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò°ï¿½
 	if (!bIsCaptured)
 	{
 		return;
 	}
 
-	// ¼³µæ °¡´É ½Ã°£ÀÌ Áö³µ´ÂÁö È®ÀÎ
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 	float CurrentTime = GetWorld()->GetTimeSeconds();
-	if (CurrentTime - CaptureTime > PersuasionWindow) // ex) ÀâÈù ½ÃÁ¡ÀÌ 100(Capture TIme)ÃÊ¶ó°í °¡Á¤ÇÏ¸é, ÇöÀç½ÃÁ¡(CurrentTIme)ÀÌ 105ÃÊ ÀÌÇÏ¿©¾ß Åë°ú.(5ÃÊ ÀÌ³» ¼³µæ½ÃµµÇØ¾ßÇÔ)
+	if (CurrentTime - CaptureTime > PersuasionWindow) // ex) ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 100(Capture TIme)ï¿½Ê¶ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(CurrentTIme)ï¿½ï¿½ 105ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½.(5ï¿½ï¿½ ï¿½Ì³ï¿½ ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½Ø¾ï¿½ï¿½ï¿½)
 	{
 		UE_LOG(LogTemplateCharacter, Display, TEXT("Persuasion failed - Too late!"));
 		return;
 	}
 
-	// ¼³µæ ¼º°ø È®·ü¿¡ µû¶ó ¼º°ø ¿©ºÎ °áÁ¤
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	bool bPersuasionSuccess = FMath::FRand() <= PersuasionChance;
 
 	if (bPersuasionSuccess && CurrentMana >= 20)
 	{
-		// ¼³µæ ¼º°ø - 10ÃÊ°£ ¹«Àû »óÅÂ ºÎ¿©
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ - 10ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î¿ï¿½
 		bIsCaptured = false;
 		bIsInvulnerable = true;
 		bIsSucceededPersuasion = true;
 		InvulnerabilitySkill.bIsActive = true;
-		InvulnerabilitySkill.RemainingTime = InvulnerabilitySkill.RemainingTime + InvulnerabilityDuration; // °ü´ëÇÏ°Ô ´©Àû½Ã°£+Ãß°¡½Ã°£ °ø½Ä »ç¿ë
+		InvulnerabilitySkill.RemainingTime = InvulnerabilitySkill.RemainingTime + InvulnerabilityDuration; // ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ã°ï¿½+ï¿½ß°ï¿½ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		CurrentMana = CurrentMana / 2;
 
 		UE_LOG(LogTemplateCharacter, Display, TEXT("Persuasion successful! Invulnerability granted for %.1f seconds"), InvulnerabilityDuration);
@@ -646,35 +647,70 @@ void ASCC_UEAILectureCharacter::EndInvulnerability()
 	UE_LOG(LogTemplateCharacter, Display, TEXT("Invulnerability ended"));
 }
 
-// ÀÎÅÍÆäÀÌ½º ¸Ş¼­µå ±¸Çö
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½Ş¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 bool ASCC_UEAILectureCharacter::CanBeDetected_Implementation() const
 {
-	// ½ºÅÚ½º »óÅÂÀÌ°Å³ª ¹«Àû »óÅÂÀÌ¸é °¨Áö ºÒ°¡
+	// ï¿½ï¿½ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì°Å³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò°ï¿½
 	return !(StealthSkill.bIsActive || bIsInvulnerable || bIsInStealthMode);
 }
 
 bool ASCC_UEAILectureCharacter::CanMakeNoise_Implementation() const
 {
-	// ¼ÒÀ½ ¹ß»ı °¡´É »óÅÂÀÏ ¶§¸¸ ¼ÒÀ½ °¨Áö °¡´É
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	return bCanMakeNoise && !SilentMovementSkill.bIsActive;
 }
 
-// °ÔÀÓ¿À¹ö
+// ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½
 
 void ASCC_UEAILectureCharacter::GameOver()
 {
 	if (Lives <= 0)
 	{
-		// ÇÃ·¹ÀÌ¾î Á¦¾î ¹× Ãæµ¹ ºñÈ°¼ºÈ­
+		// ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½æµ¹ ï¿½ï¿½È°ï¿½ï¿½È­
 		SetActorHiddenInGame(true);
 		SetActorEnableCollision(false);
 
-		// ÇÃ·¹ÀÌ¾î ÀÔ·Â ºñÈ°¼ºÈ­
+		// ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½È°ï¿½ï¿½È­
 		APlayerController* PC = Cast<APlayerController>(GetController());
 		if (PC)
 		{
 			DisableInput(PC);
 		}
 	}
+}
+
+
+// í‚¤ ì…ë ¥ í•¨ìˆ˜ë¥¼ PlayerCharacterì— ì¶”ê°€í•  ì½”ë“œ
+// ì±•í„° 3 ê³¼ì œ
+
+void ASCC_UEAILectureCharacter::StopAIDetection()
+{
+    // ì£¼ë³€ AI ì°¾ê¸°
+    TArray<AActor*> Guards;
+    UGameplayStatics::GetAllActorsOfClass(GetWorld(), AAI_DetectionGuard::StaticClass(), Guards);
+
+    for (AActor* Actor : Guards)
+    {
+        AAI_DetectionGuard* Guard = Cast<AAI_DetectionGuard>(Actor);
+        if (Guard)
+        {
+            // ì¼ì • ê±°ë¦¬(ì˜ˆ: 300ìœ ë‹›) ì´ë‚´ì˜ AIë§Œ ì˜í–¥ ë°›ìŒ
+            float Distance = FVector::Dist(GetActorLocation(), Guard->GetActorLocation());
+            if (Distance <= 300.0f)
+            {
+                Guard->StopChasing();
+
+                // ë””ë²„ê·¸ ì •ë³´ í‘œì‹œ
+                UE_LOG(LogTemp, Warning, TEXT("Player stopped AI detection for %s"), *Guard->GetName());
+
+                // íš¨ê³¼ í‘œì‹œ (ì›í•œë‹¤ë©´)
+                if (GEngine)
+                {
+                    GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Green,
+                        FString::Printf(TEXT("Stopped %s from chasing!"), *Guard->GetName()));
+                }
+            }
+        }
+    }
 }

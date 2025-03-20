@@ -1,15 +1,15 @@
 {
     "Version": "1.2",
     "Data": {
-        "Source": "e:\\projects\\scc_ueai_lecture\\intermediate\\build\\win64\\unrealeditor\\inc\\scc_ueai_lecture\\uht\\myclass.gen.cpp",
+        "Source": "d:\\git\\scc_ue_ai_final\\scc_ue_ai_final\\intermediate\\build\\win64\\unrealeditor\\inc\\scc_ueai_lecture\\uht\\myclass.gen.cpp",
         "ProvidedModule": "",
-        "PCH": "e:\\projects\\scc_ueai_lecture\\intermediate\\build\\win64\\x64\\scc_ueai_lectureeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
+        "PCH": "d:\\git\\scc_ue_ai_final\\scc_ue_ai_final\\intermediate\\build\\win64\\x64\\scc_ueai_lectureeditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.cpp20.h.pch",
         "Includes": [
-            "e:\\projects\\scc_ueai_lecture\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\scc_ueai_lecture\\definitions.scc_ueai_lecture.h",
-            "e:\\projects\\scc_ueai_lecture\\source\\scc_ueai_lecture\\public\\myclass.h",
-            "e:\\epicgames\\ue_5.5\\engine\\source\\runtime\\engine\\classes\\engine\\userdefinedenum.h",
-            "e:\\epicgames\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\userdefinedenum.generated.h",
-            "e:\\projects\\scc_ueai_lecture\\intermediate\\build\\win64\\unrealeditor\\inc\\scc_ueai_lecture\\uht\\myclass.generated.h"
+            "d:\\git\\scc_ue_ai_final\\scc_ue_ai_final\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\scc_ueai_lecture\\definitions.scc_ueai_lecture.h",
+            "d:\\git\\scc_ue_ai_final\\scc_ue_ai_final\\source\\scc_ueai_lecture\\public\\myclass.h",
+            "d:\\epicgames\\ue_5.5\\engine\\source\\runtime\\engine\\classes\\engine\\userdefinedenum.h",
+            "d:\\epicgames\\ue_5.5\\engine\\intermediate\\build\\win64\\unrealeditor\\inc\\engine\\uht\\userdefinedenum.generated.h",
+            "d:\\git\\scc_ue_ai_final\\scc_ue_ai_final\\intermediate\\build\\win64\\unrealeditor\\inc\\scc_ueai_lecture\\uht\\myclass.generated.h"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

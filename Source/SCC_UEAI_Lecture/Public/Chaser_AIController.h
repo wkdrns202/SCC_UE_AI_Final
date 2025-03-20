@@ -5,7 +5,7 @@
 #include "Perception/AISenseConfig_Sight.h"
 #include "Chaser_AIController.generated.h"
 
-// AI »óÅÂ ¿­°ÅÇü Á¤ÀÇ
+// AI ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 UENUM(BlueprintType)
 enum class EAIState : uint8
 {
@@ -15,7 +15,7 @@ enum class EAIState : uint8
 };
 
 /**
- * °Å¸® ±â¹Ý ÃßÀû ·ÎÁ÷ÀÌ ±¸ÇöµÈ AI ÄÁÆ®·Ñ·¯
+ * ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ AI ï¿½ï¿½Æ®ï¿½Ñ·ï¿½
  */
 UCLASS()
 class SCC_UEAI_LECTURE_API AChaser_AIController : public AAIController
@@ -23,21 +23,21 @@ class SCC_UEAI_LECTURE_API AChaser_AIController : public AAIController
     GENERATED_BODY()
 
 public:
-    // »ý¼ºÀÚ
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     AChaser_AIController();
 
-    // ÃßÀûÇÒ Å¸°Ù(ÇÃ·¹ÀÌ¾î)
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½(ï¿½Ã·ï¿½ï¿½Ì¾ï¿½)
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI")
     AActor* TargetActor;
 
-    // ÃßÀû ½ÃÀÛ/ÁßÁö ÇÔ¼ö
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     UFUNCTION(BlueprintCallable, Category = "AI")
     void StartChasing(AActor* Target);
 
     UFUNCTION(BlueprintCallable, Category = "AI")
     void StopChasing();
 
-    // °Å¸® ¼³Á¤
+    // ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½ï¿½
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI")
     float DetectionRadius = 1500.0f;
 
@@ -48,19 +48,19 @@ public:
     float LoseInterestRadius = 2000.0f;
 
 
-    // ½Ã¾ß °¨Áö ¼³Á¤
+    // ï¿½Ã¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "AI")
     UAISenseConfig_Sight* SightConfig;
 
-    // °¨Áö ÀÌº¥Æ® Ã³¸® ÇÔ¼ö
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ® Ã³ï¿½ï¿½ ï¿½Ô¼ï¿½
     UFUNCTION()
     void OnPerceptionUpdated(AActor* Actor, FAIStimulus Stimulus);
 
-    // »óÅÂ º¯È¯ ÇÔ¼ö
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ ï¿½Ô¼ï¿½
     UFUNCTION(BlueprintCallable, Category = "AI")
     void UpdateAIState();
 
-    // ÇöÀç »óÅÂ ¹ÝÈ¯
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
     UFUNCTION(BlueprintPure, Category = "AI")
     EAIState GetCurrentState() const { return CurrentState; }
 
@@ -69,12 +69,12 @@ protected:
     virtual void Tick(float DeltaTime) override;
 
 private:
-    // Å¸°Ù ÃßÀû ÁßÀÎÁö ¿©ºÎ
+    // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     bool bIsChasing = false;
 
-    // ÇöÀç AI »óÅÂ
+    // ï¿½ï¿½ï¿½ï¿½ AI ï¿½ï¿½ï¿½ï¿½
     EAIState CurrentState = EAIState::Idle;
 
-    // ¸¶Áö¸·À¸·Î Å¸°ÙÀ» º» À§Ä¡
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Ä¡
     FVector LastKnownLocation;
 };

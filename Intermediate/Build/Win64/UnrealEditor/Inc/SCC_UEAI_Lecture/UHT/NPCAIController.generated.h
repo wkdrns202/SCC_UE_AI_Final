@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define SCC_UEAI_LECTURE_NPCAIController_generated_h
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_NPCAIController_h_15_INCLASS_NO_PURE_DECLS \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_NPCAIController_h_15_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesANPCAIController(); \
 	friend struct Z_Construct_UClass_ANPCAIController_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(ANPCAIController)
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_NPCAIController_h_15_ENHANCED_CONSTRUCTORS \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_NPCAIController_h_15_ENHANCED_CONSTRUCTORS \
 	/** Standard constructor, called after all reflected properties have been initialized */ \
 	NO_API ANPCAIController(const FObjectInitializer& ObjectInitializer = FObjectInitializer::Get()); \
 private: \
@@ -37,12 +37,12 @@ public: \
 	NO_API virtual ~ANPCAIController();
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_NPCAIController_h_12_PROLOG
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_NPCAIController_h_15_GENERATED_BODY \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_NPCAIController_h_12_PROLOG
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_NPCAIController_h_15_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_NPCAIController_h_15_INCLASS_NO_PURE_DECLS \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_NPCAIController_h_15_ENHANCED_CONSTRUCTORS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_NPCAIController_h_15_INCLASS_NO_PURE_DECLS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_NPCAIController_h_15_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -50,7 +50,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> SCC_UEAI_LECTURE_API UClass* StaticClass<class ANPCAIController>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_NPCAIController_h
+#define CURRENT_FILE_ID FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_NPCAIController_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

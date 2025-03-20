@@ -26,8 +26,8 @@ protected:
     void DestroyLogic();
     virtual void OnPossess(APawn* InPawn) override;
     bool bPatrolPointReady;
-    FVector FoundTargetPoint;  // Æ÷ÀÎÅÍ°¡ ¾Æ´Ñ °ª Å¸ÀÔÀ¸·Î ¼±¾ð
-    bool bFoundTargetPoint;    // Å¸°Ù Æ÷ÀÎÆ®¸¦ Ã£¾Ò´ÂÁö ¿©ºÎ¸¦ ÀúÀå
+    FVector FoundTargetPoint;  // ï¿½ï¿½ï¿½ï¿½ï¿½Í°ï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    bool bFoundTargetPoint;    // Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ Ã£ï¿½Ò´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Î¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 private:
     static const FName SearchLocationKey;

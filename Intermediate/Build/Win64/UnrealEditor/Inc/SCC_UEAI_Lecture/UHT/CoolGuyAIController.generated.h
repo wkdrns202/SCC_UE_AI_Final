@@ -10,22 +10,20 @@
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 class AActor;
-class APawn;
 struct FAIStimulus;
 #ifdef SCC_UEAI_LECTURE_CoolGuyAIController_generated_h
 #error "CoolGuyAIController.generated.h already included, missing '#pragma once' in CoolGuyAIController.h"
 #endif
 #define SCC_UEAI_LECTURE_CoolGuyAIController_generated_h
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_26_RPC_WRAPPERS_NO_PURE_DECLS \
-	DECLARE_FUNCTION(execOnHearNoise); \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_25_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execOnTargetPerceptionUpdated); \
 	DECLARE_FUNCTION(execStartSearchingLastLocation); \
 	DECLARE_FUNCTION(execStopChasingPlayer); \
 	DECLARE_FUNCTION(execStartChasingPlayer);
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_26_INCLASS_NO_PURE_DECLS \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_25_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesACoolGuyAIController(); \
 	friend struct Z_Construct_UClass_ACoolGuyAIController_Statics; \
@@ -34,7 +32,7 @@ public: \
 	DECLARE_SERIALIZER(ACoolGuyAIController)
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_26_ENHANCED_CONSTRUCTORS \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_25_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	ACoolGuyAIController(ACoolGuyAIController&&); \
@@ -46,13 +44,13 @@ public: \
 	NO_API virtual ~ACoolGuyAIController();
 
 
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_23_PROLOG
-#define FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_26_GENERATED_BODY \
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_22_PROLOG
+#define FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_25_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_26_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_26_INCLASS_NO_PURE_DECLS \
-	FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_26_ENHANCED_CONSTRUCTORS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_25_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_25_INCLASS_NO_PURE_DECLS \
+	FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h_25_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -60,14 +58,13 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> SCC_UEAI_LECTURE_API UClass* StaticClass<class ACoolGuyAIController>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_Projects_SCC_UEAI_Lecture_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h
+#define CURRENT_FILE_ID FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_CoolGuyAIController_h
 
 
 #define FOREACH_ENUM_ESEARCHSTATEINTERNAL(op) \
 	op(ESearchStateInternal::Idle) \
-	op(ESearchStateInternal::Investigating) \
-	op(ESearchStateInternal::Chasing) \
-	op(ESearchStateInternal::Searching) 
+	op(ESearchStateInternal::Suspicious) \
+	op(ESearchStateInternal::Chasing) 
 
 enum class ESearchStateInternal : uint8;
 template<> struct TIsUEnumClass<ESearchStateInternal> { enum { Value = true }; };

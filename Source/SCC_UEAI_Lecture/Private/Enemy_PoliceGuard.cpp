@@ -16,35 +16,35 @@ void AEnemy_PoliceGuard::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
 
-    // ÀÏ¹Ý »óÅÂÀÏ ¶§ ½ºÅÂ¹Ì³ª È¸º¹
+    // ï¿½Ï¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Â¹Ì³ï¿½ È¸ï¿½ï¿½
     if (CurrentAlertLevel == EAlertLevel::Normal)
     {
         IsResting = true;
-        Stamina += (StaminaRecoveryRate * DeltaTime / (age * 0.04)); // ³ªÀÌ°¡ ÀûÀ» ¼ö·Ï »¡¸® È¸º¹µÇ´Â ·ÎÁ÷ (³ªÀÌÀÇ 4%, 25¼¼ ±âÁØ 1¹è)
-        Stamina = FMath::Min(Stamina, MaxStamina); // ÃÖ´ë°ª Á¦ÇÑ
+        Stamina += (StaminaRecoveryRate * DeltaTime / (age * 0.04)); // ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 4%, 25ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½)
+        Stamina = FMath::Min(Stamina, MaxStamina); // ï¿½Ö´ë°ª ï¿½ï¿½ï¿½ï¿½
     }
-    // Ãß°Ý ÁßÀÏ ¶§ ½ºÅÂ¹Ì³ª ¼Ò¸ð
+    // ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Â¹Ì³ï¿½ ï¿½Ò¸ï¿½
     else if (CurrentAlertLevel == EAlertLevel::Pursuit && !IsResting)
     {
-        Stamina -= (StaminaDrainRate * DeltaTime * (age * 0.04)); // ³ªÀÌ°¡ ¸¹À» ¼ö·Ï ¼Ò¸ð·®ÀÌ ¸¹¾ÆÁö´Â ·ÎÁ÷ (³ªÀÌÀÇ 4%, 25¼¼ ±âÁØ 1¹è)
-        Stamina = FMath::Max(Stamina, 0.0f); // ÃÖ¼Ò°ª Á¦ÇÑ
+        Stamina -= (StaminaDrainRate * DeltaTime * (age * 0.04)); // ï¿½ï¿½ï¿½Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 4%, 25ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½)
+        Stamina = FMath::Max(Stamina, 0.0f); // ï¿½Ö¼Ò°ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-        // ½ºÅÂ¹Ì³ª°¡ ÀÓ°è°ª ÀÌÇÏ·Î ¶³¾îÁö¸é ÀÚµ¿À¸·Î ÈÞ½Ä »óÅÂ·Î ÀüÈ¯
+        // ï¿½ï¿½ï¿½Â¹Ì³ï¿½ï¿½ï¿½ ï¿½Ó°è°ª ï¿½ï¿½ï¿½Ï·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯
         if (Stamina < 10.0f)
         {
             IsResting = true;
             UE_LOG(LogTemp, Warning, TEXT("PoliceGuard is exhausted! can't pursue Player anymore."));
-            SetAlertLevel(EAlertLevel::Alert); // °æ°è »óÅÂ·Î ÀüÈ¯
+            SetAlertLevel(EAlertLevel::Alert); // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â·ï¿½ ï¿½ï¿½È¯
         }
     }
-    // ÈÞ½Ä »óÅÂÀÌÁö¸¸ Ãß°Ý ¿ÜÀÇ »óÅÂÀÏ ¶§µµ ½ºÅÂ¹Ì³ª ¼­¼­È÷ È¸º¹
+    // ï¿½Þ½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â¹Ì³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½
     else if (IsResting)
     {
-        Stamina += (StaminaRecoveryRate * 0.5f * DeltaTime); // ÈÞ½Ä ½Ã È¸º¹ ¼Óµµ´Â ÀÏ¹Ý »óÅÂÀÇ Àý¹Ý
+        Stamina += (StaminaRecoveryRate * 0.5f * DeltaTime); // ï¿½Þ½ï¿½ ï¿½ï¿½ È¸ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ ï¿½Ï¹ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         Stamina = FMath::Min(Stamina, MaxStamina);
 
-        // ÃæºÐÈ÷ È¸º¹µÆÀ¸¸é ´Ù½Ã Çàµ¿ °¡´É
-        if (Stamina >= 30.0f) // Stamina°¡ 30 ÀÌ»ó È¸º¹µÇ¸é ´Ù½Ã ¿òÁ÷ÀÏ ¼ö ÀÖÀ½.
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½àµ¿ ï¿½ï¿½ï¿½ï¿½
+        if (Stamina >= 30.0f) // Staminaï¿½ï¿½ 30 ï¿½Ì»ï¿½ È¸ï¿½ï¿½ï¿½Ç¸ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
         {
             IsResting = false;
         }

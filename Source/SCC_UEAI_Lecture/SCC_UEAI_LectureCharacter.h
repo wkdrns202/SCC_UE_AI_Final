@@ -18,7 +18,7 @@ struct FInputActionValue;
 
 DECLARE_LOG_CATEGORY_EXTERN(LogTemplateCharacter, Log, All);
 
-// ½ºÅ³ È°¼ºÈ­ »óÅÂ¸¦ ÃßÀûÇÏ±â À§ÇÑ ±¸Á¶Ã¼ chapter 4
+// ï¿½ï¿½Å³ È°ï¿½ï¿½È­ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ã¼ chapter 4
 USTRUCT(BlueprintType)
 struct FSkillState
 {
@@ -39,7 +39,7 @@ struct FSkillState
 
 
 UCLASS(config = Game)
-class ASCC_UEAILectureCharacter : public ACharacter, public IDetectableInterface // Player Character´Â DetectableInterface ±¸Çö.
+class ASCC_UEAILectureCharacter : public ACharacter, public IDetectableInterface // Player Characterï¿½ï¿½ DetectableInterface ï¿½ï¿½ï¿½ï¿½.
 {
 	GENERATED_BODY()
 	/** Camera boom positioning the camera behind the character */
@@ -67,30 +67,30 @@ class ASCC_UEAILectureCharacter : public ACharacter, public IDetectableInterface
 public:
 	ASCC_UEAILectureCharacter();
 
-	// ÀÎÅÍÆäÀÌ½º ¸Ş¼­µå ±¸ÇöºÎ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½Ş¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	virtual bool CanBeDetected_Implementation() const override;
 	virtual bool CanMakeNoise_Implementation() const override;
 	virtual void CapturedByAI_Implementation() override;
 
-	// ½ºÅÚ½º ¸ğµå ÇÃ·¡±×
+	// ï¿½ï¿½ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stealth")
 	bool bIsInStealthMode;
 
-	// ¼ÒÀ½ ¹ß»ı °¡´É ÇÃ·¡±×
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stealth")
 	bool bCanMakeNoise;
 
-	// ¼³µæ ¼º°ø¿©ºÎ ÇÃ·¡±×
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½ï¿½
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stealth")
 	bool bIsSucceededPersuasion;
 
-	// ³×ºñ°ÔÀÌ¼Ç ¸Ş½Ã ¹İ°æ ¼³Á¤
+	// ï¿½×ºï¿½ï¿½ï¿½Ì¼ï¿½ ï¿½Ş½ï¿½ ï¿½İ°ï¿½ ï¿½ï¿½ï¿½ï¿½
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Navigation)
 	float NavGenerationRadius;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Navigation)
 	float NavRemovalRadius;
 
-	// AI Modifier Å×½ºÆ® °ü·Ã º¯¼ö ¹× ÇÔ¼ö
+	// AI Modifier ï¿½×½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ô¼ï¿½
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI Movement")
 	bool bIsSucceeded;
 
@@ -109,11 +109,11 @@ public:
 	UFUNCTION()
 	void OnMoveCompleted(FAIRequestID RequestID, EPathFollowingResult::Type Result);
 
-	// BP¿¡¼­ È£Ãâ °¡´ÉÇÑ ÇÔ¼ö - ÀÌµ¿ ½ÃÀÛ
+	// BPï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ - ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
 	UFUNCTION(BlueprintCallable, Category = "AI Movement")
 	void StartMoving();
 
-	// Å¸°Ù Æ÷ÀÎÆ® Ã£±â
+	// Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® Ã£ï¿½ï¿½
 	UFUNCTION(BlueprintCallable, Category = "AI Movement")
 	void FindTargetPoints();
 
@@ -122,14 +122,14 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Noise")
 	class UPawnNoiseEmitterComponent* NoiseEmitterComponent;
 
-	// °ÔÀÓ Á¦ÀÛ ÈÄ¹İºÎ Ãß°¡ÄÚµå
-	// ÇÃ·¹ÀÌ¾î »ı¸í
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ä¹İºï¿½ ï¿½ß°ï¿½ï¿½Úµï¿½
+	// ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Stats")
 	int32 Lives;
 
-	// °ÔÀÓ¸ğµå
+	// ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½
 	UPROPERTY(BlueprintReadOnly, Category = "AI|Tracking")
-	AGameModeBase* GameMode; // ±âº» °ÔÀÓ¸ğµå Å¸ÀÔ »ç¿ë
+	AGameModeBase* GameMode; // ï¿½âº» ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½ Å¸ï¿½ï¿½ ï¿½ï¿½ï¿½
 
 protected:
 	/** Called for movement input */
@@ -160,7 +160,7 @@ public:
 	/** Returns NavInvoker subobject **/
 	FORCEINLINE class UNavigationInvokerComponent* GetNavInvoker() const { return NavInvoker; }
 
-	// Ã©ÅÍ 4 ÇÔ¼ö µî
+	// Ã©ï¿½ï¿½ 4 ï¿½Ô¼ï¿½ ï¿½ï¿½
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
@@ -176,7 +176,7 @@ protected:
 
 
 public:
-	// ¸¶³ª ½Ã½ºÅÛ
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ã½ï¿½ï¿½ï¿½
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Stats")
 	float MaxMana = 50.0f;
 
@@ -189,7 +189,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Stats")
 	float ManaRegenInterval = 1.0f;
 
-	// ½ºÅ³ »óÅÂ °ü¸®
+	// ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Skills")
 	FSkillState SilentMovementSkill;
 
@@ -205,7 +205,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Skills")
 	float SlowWalkSpeed = 250.0f;
 
-	// ½ºÅ³ »ç¿ë ÇÔ¼ö
+	// ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
 	UFUNCTION(BlueprintCallable, Category = "Player Skills")
 	void ActivateSilentMovement();
 
@@ -215,14 +215,14 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Player Skills")
 	void TryPersuade();
 
-	// AI ÀÎÅÍ·¢¼Ç °ü·Ã
+	// AI ï¿½ï¿½ï¿½Í·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI Interaction")
 	bool bIsCaptured = false;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI Interaction")
 	bool bIsInvulnerable = false;
 	
-	//Å¸ÀÌ¸Ó ¼¼ÆÃ°ü·Ã
+	//Å¸ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½Ã°ï¿½ï¿½ï¿½
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI Interaction")
 	bool bIsTimerSet = false;
 
@@ -238,41 +238,46 @@ public:
 	UPROPERTY(EditAnywhere, Category = "AI Interaction")
 	float CaptureTime = 0.0f;
 
-	// AI¿¡ ÀÇÇØ ÀâÇûÀ» ¶§ È£ÃâµÇ´Â ÇÔ¼ö
+	// AIï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ È£ï¿½ï¿½Ç´ï¿½ ï¿½Ô¼ï¿½
 	UFUNCTION(BlueprintCallable, Category = "AI Interaction")
-	void PlayerCaptured(); // CapturedByAI¿¡¼­ ÀÌ¸§ º¯°æ. ÀÎÅÍÆäÀÌ½º ÇÔ¼ö¿¡ ÀÇÇØ ½ÇÇàµÊ.
+	void PlayerCaptured(); // CapturedByAIï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½.
+
+	// ì±•í„°3 ê³¼ì œ
+	// íƒì§€ ì¤‘ì§€ í•¨ìˆ˜
+	UFUNCTION(BlueprintCallable, Category = "AI")
+	void StopAIDetection();
 
 private:
-	// ¸¶³ª Àç»ı Å¸ÀÌ¸Ó
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Å¸ï¿½Ì¸ï¿½
 	FTimerHandle ManaRegenTimerHandle;
 
-	// ½ºÅ³ Áö¼Ó½Ã°£ Å¸ÀÌ¸Ó
+	// ï¿½ï¿½Å³ ï¿½ï¿½ï¿½Ó½Ã°ï¿½ Å¸ï¿½Ì¸ï¿½
 	FTimerHandle SilentMovementTimerHandle;
 	FTimerHandle StealthTimerHandle;
 	FTimerHandle InvulnerabilityTimerHandle;
 
-	// ÀâÈú°æ¿ì 10ÃÊ ¹«Àû Å¸ÀÌ¸Ó
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 10ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½Ì¸ï¿½
 	FTimerHandle CapturedTimerHandle;
 
-	// ÀâÈú°æ¿ì 5ÃÊ ¼³µæ±âÈ¸ ºÎ¿© Å¸ÀÌ¸Ó
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 5ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½È¸ ï¿½Î¿ï¿½ Å¸ï¿½Ì¸ï¿½
 	FTimerHandle PlayerCapturedTimerHandle;
 
-	// ¸¶³ª Àç»ı ÇÔ¼ö
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
 	void RegenerateMana();
 
-	// ½ºÅ³ Á¾·á ÇÔ¼ö
+	// ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
 	void EndSilentMovement();
 	void EndStealth();
 	void EndInvulnerability();
 
-	// ±âº» Ä³¸¯ÅÍ ÀÌµ¿ ¼ÒÀ½ Å©±â
+	// ï¿½âº» Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½
 	UPROPERTY(EditAnywhere, Category = "Noise", meta = (AllowPrivateAccess = "true"))
 	float DefaultMovementNoiseLoudness = 1.0f;
 
-	// ±âÁ¸ ¸Ş½Ã ¸ÓÆ¼¸®¾ó ÀúÀå¿ë
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½Ş½ï¿½ ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½
 	TArray<UMaterialInterface*> OriginalMaterials;
 
-	// ½ºÅÚ½º¿ë ¸ÓÆ¼¸®¾ó
+	// ï¿½ï¿½ï¿½Ú½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½
 	UPROPERTY(EditAnywhere, Category = "Player Skills", meta = (AllowPrivateAccess = "true"))
 	UMaterialInterface* StealthMaterial;
 };
