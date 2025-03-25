@@ -16,6 +16,6 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SCC_UEAI_LectureModuleRules
-build_property.ProjectDir = E:\Git\SCC_UE_AI_Final\SCC_UE_AI_Final\Intermediate\Build\BuildRulesProjects\SCC_UEAI_LectureModuleRules\
+build_property.ProjectDir = D:\Git\SCC_UE_AI_Final\SCC_UE_AI_Final\Intermediate\Build\BuildRulesProjects\SCC_UEAI_LectureModuleRules\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

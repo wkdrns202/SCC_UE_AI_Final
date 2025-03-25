@@ -23,6 +23,8 @@ public:
     // Called every frame
     virtual void Tick(float DeltaTime) override;
 
+    //// �Ʒ� �ڵ� �߰�
+
     // ��Ʈ�� ����Ʈ ���� (��Ʈ�ѷ����� ȣ��)
     void SetPatrolPoints(const TArray<FVector>& Points);
 

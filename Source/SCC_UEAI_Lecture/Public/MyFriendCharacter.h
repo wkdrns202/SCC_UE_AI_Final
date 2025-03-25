@@ -58,9 +58,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI Movement")
 	TArray<AActor*> FoundTargets;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AI Movement")
-	int32 PatrolCount;
-
 private:
 	UPROPERTY()
 	AAIController* AIController;
@@ -68,5 +65,6 @@ private:
 	UPROPERTY()
 	bool bIsMoving;
 
-
+	UPROPERTY()
+	int8 PatrolCount;
 };

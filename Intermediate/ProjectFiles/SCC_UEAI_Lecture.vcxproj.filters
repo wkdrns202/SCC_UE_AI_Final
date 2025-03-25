@@ -27,10 +27,10 @@
     <None Include="..\..\Config\DefaultInput.ini">
       <Filter>Config</Filter>
     </None>
-    <None Include="..\..\Config\DefaultEditor.ini">
+    <None Include="..\..\Config\DefaultEngine.ini">
       <Filter>Config</Filter>
     </None>
-    <None Include="..\..\Config\DefaultEngine.ini">
+    <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
     </None>
     <Filter Include="Source\SCC_UEAI_Lecture">
@@ -45,6 +45,12 @@
     <None Include="..\..\Source\SCC_UEAI_Lecture\SCC_UEAI_Lecture.Build.cs">
       <Filter>Source\SCC_UEAI_Lecture</Filter>
     </None>
+    <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\SCC_UEAI_LectureCharacter.h">
+      <Filter>Source\SCC_UEAI_Lecture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\SCC_UEAI_LectureCharacter.cpp">
+      <Filter>Source\SCC_UEAI_Lecture</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\SCC_UEAI_LectureGameMode.h">
       <Filter>Source\SCC_UEAI_Lecture</Filter>
     </ClCompile>
@@ -57,12 +63,6 @@
     <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\NPC_AIController.h">
       <Filter>Source\SCC_UEAI_Lecture</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\SCC_UEAI_LectureCharacter.h">
-      <Filter>Source\SCC_UEAI_Lecture</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\SCC_UEAI_LectureCharacter.cpp">
-      <Filter>Source\SCC_UEAI_Lecture</Filter>
-    </ClCompile>
     <Filter Include="Source\SCC_UEAI_Lecture\Public">
       <UniqueIdentifier>{941FCED3-12DF-3DE2-8922-F6572E1409C6}</UniqueIdentifier>
     </Filter>
@@ -70,6 +70,9 @@
       <Filter>Source\SCC_UEAI_Lecture\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Public\RVO_Character.h">
+      <Filter>Source\SCC_UEAI_Lecture\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Public\CoolGuyAICharacter.h">
       <Filter>Source\SCC_UEAI_Lecture\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Public\BTTask_FindInteractiveObject.h">
@@ -94,6 +97,9 @@
       <Filter>Source\SCC_UEAI_Lecture\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Public\MyClass.h">
+      <Filter>Source\SCC_UEAI_Lecture\Public</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Public\CoolGuyAIController.h">
       <Filter>Source\SCC_UEAI_Lecture\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Public\Enemy_AIController.h">
@@ -135,22 +141,16 @@
     <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Public\MyHomeworkFriendCharacter.h">
       <Filter>Source\SCC_UEAI_Lecture\Public</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Public\AI_DetectionGuard.h">
+    <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Public\BTTask_StopChasing.h">
       <Filter>Source\SCC_UEAI_Lecture\Public</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Public\BTService_UpdateAlertLevel.h">
       <Filter>Source\SCC_UEAI_Lecture\Public</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Public\AI_DetectionGuard.h">
+      <Filter>Source\SCC_UEAI_Lecture\Public</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Public\PlayerDetectionHandler.h">
-      <Filter>Source\SCC_UEAI_Lecture\Public</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Public\BTTask_StopChasing.h">
-      <Filter>Source\SCC_UEAI_Lecture\Public</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Public\CoolGuyAICharacter.h">
-      <Filter>Source\SCC_UEAI_Lecture\Public</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Public\CoolGuyAIController.h">
       <Filter>Source\SCC_UEAI_Lecture\Public</Filter>
     </ClCompile>
     <Filter Include="Source\SCC_UEAI_Lecture\Private">
@@ -172,6 +172,9 @@
       <Filter>Source\SCC_UEAI_Lecture\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Private\RVO_Character.cpp">
+      <Filter>Source\SCC_UEAI_Lecture\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Private\CoolGuyAICharacter.cpp">
       <Filter>Source\SCC_UEAI_Lecture\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Private\MyClass.cpp">
@@ -198,6 +201,12 @@
     <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Private\InteractiveBox.cpp">
       <Filter>Source\SCC_UEAI_Lecture\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Private\CoolGuyAIController.cpp">
+      <Filter>Source\SCC_UEAI_Lecture\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Private\Enemy_TESTGuard.cpp">
+      <Filter>Source\SCC_UEAI_Lecture\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Private\Enemy_SurveillanceCamera.cpp">
       <Filter>Source\SCC_UEAI_Lecture\Private</Filter>
     </ClCompile>
@@ -222,25 +231,16 @@
     <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Private\MyHomeworkFriendCharacter.cpp">
       <Filter>Source\SCC_UEAI_Lecture\Private</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Private\AI_DetectionGuard.cpp">
-      <Filter>Source\SCC_UEAI_Lecture\Private</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Private\BTTask_StopChasing.cpp">
       <Filter>Source\SCC_UEAI_Lecture\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Private\BTService_UpdateAlertLevel.cpp">
       <Filter>Source\SCC_UEAI_Lecture\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Private\AI_DetectionGuard.cpp">
+      <Filter>Source\SCC_UEAI_Lecture\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Private\PlayerDetectionHandler.cpp">
-      <Filter>Source\SCC_UEAI_Lecture\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Private\Enemy_TESTGuard.cpp">
-      <Filter>Source\SCC_UEAI_Lecture\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Private\CoolGuyAICharacter.cpp">
-      <Filter>Source\SCC_UEAI_Lecture\Private</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\SCC_UEAI_Lecture\Private\CoolGuyAIController.cpp">
       <Filter>Source\SCC_UEAI_Lecture\Private</Filter>
     </ClCompile>
   </ItemGroup>

@@ -207,14 +207,13 @@ struct Z_Construct_UClass_AMyFriendCharacter_Statics
 		{ "Category", "AI Movement" },
 		{ "ModuleRelativePath", "Public/MyFriendCharacter.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PatrolCount_MetaData[] = {
-		{ "Category", "AI Movement" },
-		{ "ModuleRelativePath", "Public/MyFriendCharacter.h" },
-	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_AIController_MetaData[] = {
 		{ "ModuleRelativePath", "Public/MyFriendCharacter.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_bIsMoving_MetaData[] = {
+		{ "ModuleRelativePath", "Public/MyFriendCharacter.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp_PatrolCount_MetaData[] = {
 		{ "ModuleRelativePath", "Public/MyFriendCharacter.h" },
 	};
 #endif // WITH_METADATA
@@ -226,10 +225,10 @@ struct Z_Construct_UClass_AMyFriendCharacter_Statics
 	static const UECodeGen_Private::FNamePropertyParams NewProp_PatrolLocationTag;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_FoundTargets_Inner;
 	static const UECodeGen_Private::FArrayPropertyParams NewProp_FoundTargets;
-	static const UECodeGen_Private::FIntPropertyParams NewProp_PatrolCount;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp_AIController;
 	static void NewProp_bIsMoving_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp_bIsMoving;
+	static const UECodeGen_Private::FInt8PropertyParams NewProp_PatrolCount;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
@@ -255,13 +254,13 @@ const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMyFriendCharac
 const UECodeGen_Private::FNamePropertyParams Z_Construct_UClass_AMyFriendCharacter_Statics::NewProp_PatrolLocationTag = { "PatrolLocationTag", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Name, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMyFriendCharacter, PatrolLocationTag), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PatrolLocationTag_MetaData), NewProp_PatrolLocationTag_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMyFriendCharacter_Statics::NewProp_FoundTargets_Inner = { "FoundTargets", nullptr, (EPropertyFlags)0x0000000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, 0, Z_Construct_UClass_AActor_NoRegister, METADATA_PARAMS(0, nullptr) };
 const UECodeGen_Private::FArrayPropertyParams Z_Construct_UClass_AMyFriendCharacter_Statics::NewProp_FoundTargets = { "FoundTargets", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Array, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMyFriendCharacter, FoundTargets), EArrayPropertyFlags::None, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_FoundTargets_MetaData), NewProp_FoundTargets_MetaData) };
-const UECodeGen_Private::FIntPropertyParams Z_Construct_UClass_AMyFriendCharacter_Statics::NewProp_PatrolCount = { "PatrolCount", nullptr, (EPropertyFlags)0x0010000000000005, UECodeGen_Private::EPropertyGenFlags::Int, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMyFriendCharacter, PatrolCount), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PatrolCount_MetaData), NewProp_PatrolCount_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMyFriendCharacter_Statics::NewProp_AIController = { "AIController", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMyFriendCharacter, AIController), Z_Construct_UClass_AAIController_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_AIController_MetaData), NewProp_AIController_MetaData) };
 void Z_Construct_UClass_AMyFriendCharacter_Statics::NewProp_bIsMoving_SetBit(void* Obj)
 {
 	((AMyFriendCharacter*)Obj)->bIsMoving = 1;
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AMyFriendCharacter_Statics::NewProp_bIsMoving = { "bIsMoving", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(AMyFriendCharacter), &Z_Construct_UClass_AMyFriendCharacter_Statics::NewProp_bIsMoving_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_bIsMoving_MetaData), NewProp_bIsMoving_MetaData) };
+const UECodeGen_Private::FInt8PropertyParams Z_Construct_UClass_AMyFriendCharacter_Statics::NewProp_PatrolCount = { "PatrolCount", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Int8, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMyFriendCharacter, PatrolCount), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp_PatrolCount_MetaData), NewProp_PatrolCount_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMyFriendCharacter_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyFriendCharacter_Statics::NewProp_Target,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyFriendCharacter_Statics::NewProp_Target2,
@@ -270,9 +269,9 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMyFriend
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyFriendCharacter_Statics::NewProp_PatrolLocationTag,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyFriendCharacter_Statics::NewProp_FoundTargets_Inner,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyFriendCharacter_Statics::NewProp_FoundTargets,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyFriendCharacter_Statics::NewProp_PatrolCount,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyFriendCharacter_Statics::NewProp_AIController,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyFriendCharacter_Statics::NewProp_bIsMoving,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyFriendCharacter_Statics::NewProp_PatrolCount,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AMyFriendCharacter_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AMyFriendCharacter_Statics::DependentSingletons[])() = {
@@ -315,10 +314,10 @@ AMyFriendCharacter::~AMyFriendCharacter() {}
 struct Z_CompiledInDeferFile_FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_MyFriendCharacter_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AMyFriendCharacter, AMyFriendCharacter::StaticClass, TEXT("AMyFriendCharacter"), &Z_Registration_Info_UClass_AMyFriendCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMyFriendCharacter), 3527215423U) },
+		{ Z_Construct_UClass_AMyFriendCharacter, AMyFriendCharacter::StaticClass, TEXT("AMyFriendCharacter"), &Z_Registration_Info_UClass_AMyFriendCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMyFriendCharacter), 743825914U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_MyFriendCharacter_h_85266964(TEXT("/Script/SCC_UEAI_Lecture"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_MyFriendCharacter_h_2249603120(TEXT("/Script/SCC_UEAI_Lecture"),
 	Z_CompiledInDeferFile_FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_MyFriendCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_Git_SCC_UE_AI_Final_SCC_UE_AI_Final_Source_SCC_UEAI_Lecture_Public_MyFriendCharacter_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

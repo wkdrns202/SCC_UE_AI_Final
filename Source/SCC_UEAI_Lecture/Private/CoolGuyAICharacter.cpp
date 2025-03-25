@@ -33,6 +33,7 @@ void ACoolGuyAICharacter::Tick(float DeltaTime)
 {
     Super::Tick(DeltaTime);
 
+
     // Patrol Points�� �غ�Ǿ��� �� bool �������� �˸� �޵��� ����.
     if (AIController->bPatrolPointsReady)
     {
