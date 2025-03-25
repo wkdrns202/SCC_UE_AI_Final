@@ -4,8 +4,6 @@
 #include "D:/Git/SCC_UE_AI_Final/SCC_UE_AI_Final/Source/SCC_UEAI_Lecture/Private/BTService_EmotionChanger.cpp"
 #include "D:/Git/SCC_UE_AI_Final/SCC_UE_AI_Final/Source/SCC_UEAI_Lecture/Private/BTTask_FindInteractiveObject.cpp"
 #include "D:/Git/SCC_UE_AI_Final/SCC_UE_AI_Final/Source/SCC_UEAI_Lecture/Private/BTTask_InteractWithObject.cpp"
-#include "D:/Git/SCC_UE_AI_Final/SCC_UE_AI_Final/Source/SCC_UEAI_Lecture/Private/CoolGuyAICharacter.cpp"
-#include "D:/Git/SCC_UE_AI_Final/SCC_UE_AI_Final/Source/SCC_UEAI_Lecture/Private/CoolGuyAIController.cpp"
 #include "D:/Git/SCC_UE_AI_Final/SCC_UE_AI_Final/Source/SCC_UEAI_Lecture/Private/DetectableInterface.cpp"
 #include "D:/Git/SCC_UE_AI_Final/SCC_UE_AI_Final/Source/SCC_UEAI_Lecture/Private/EEmotionalState.cpp"
 #include "D:/Git/SCC_UE_AI_Final/SCC_UE_AI_Final/Source/SCC_UEAI_Lecture/Private/EEnumTest.cpp"

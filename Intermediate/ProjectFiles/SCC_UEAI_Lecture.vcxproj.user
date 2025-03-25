@@ -33,7 +33,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Development_Editor|x64'">
     <LocalDebuggerCommandArguments>-Project="$(SolutionDir)SCC_UEAI_Lecture.uproject" -Editor</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
-    <LocalDebuggerCommand>D:\EpicGames\UE_5.5\Engine\Binaries\Win64\UnrealEditor.exe</LocalDebuggerCommand>
+    <LocalDebuggerCommand>E:\EpicGames\UE_5.5\Engine\Binaries\Win64\UnrealEditor.exe</LocalDebuggerCommand>
     <LocalDebuggerWorkingDirectory>$(SolutionDir)</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Win64_arm64_Development_Editor|x64'">

@@ -2,7 +2,6 @@
 	"RemapUnityFiles": 
 	{
 		"Module.SCC_UEAI_Lecture.1.cpp.obj": [
-			"PerModuleInline.gen.cpp.obj",
 			"AI_DetectionGuard.gen.cpp.obj",
 			"AnimNotify_Interaction.gen.cpp.obj",
 			"BaseItem.gen.cpp.obj",
@@ -22,7 +21,9 @@
 			"Enemy_PatrolGuard.gen.cpp.obj",
 			"Enemy_PoliceGuard.gen.cpp.obj",
 			"Enemy_SurveillanceCamera.gen.cpp.obj",
-			"Enemy_TESTGuard.gen.cpp.obj",
+			"Enemy_TESTGuard.gen.cpp.obj"
+		],
+		"Module.SCC_UEAI_Lecture.2.cpp.obj": [
 			"InteractiveBox.gen.cpp.obj",
 			"Item_Coin.gen.cpp.obj",
 			"Item_GoldBar.gen.cpp.obj",
@@ -35,42 +36,43 @@
 			"RVO_Character.gen.cpp.obj",
 			"SCC_UEAI_Lecture.init.gen.cpp.obj",
 			"SCC_UEAI_LectureCharacter.gen.cpp.obj",
-			"SCC_UEAI_LectureGameMode.gen.cpp.obj"
-		],
-		"Module.SCC_UEAI_Lecture.2.cpp.obj": [
+			"SCC_UEAI_LectureGameMode.gen.cpp.obj",
+			"PerModuleInline.gen.cpp.obj",
+			"NPC_AIController.cpp.obj",
+			"AI_DetectionGuard.cpp.obj",
 			"AnimNotify_Interaction.cpp.obj",
 			"BaseItem.cpp.obj",
 			"BTService_EmotionChanger.cpp.obj",
+			"BTService_UpdateAlertLevel.cpp.obj",
 			"BTTask_FindInteractiveObject.cpp.obj",
 			"BTTask_InteractWithObject.cpp.obj",
-			"DetectableInterface.cpp.obj",
-			"EEmotionalState.cpp.obj",
-			"EEnumTest.cpp.obj",
-			"Enemy_SurveillanceCamera.cpp.obj",
-			"InteractiveBox.cpp.obj",
-			"Item_Coin.cpp.obj",
-			"Item_GoldBar.cpp.obj",
-			"MyClass.cpp.obj",
-			"NPCAIController.cpp.obj",
-			"RVO_Character.cpp.obj",
-			"SCC_UEAI_Lecture.cpp.obj",
-			"SCC_UEAI_LectureGameMode.cpp.obj",
-			"NPC_AIController.cpp.obj",
-			"AI_DetectionGuard.cpp.obj",
-			"BTService_UpdateAlertLevel.cpp.obj",
 			"BTTask_StopChasing.cpp.obj",
 			"Chaser_AIController.cpp.obj",
 			"CoolGuyAICharacter.cpp.obj",
 			"CoolGuyAIController.cpp.obj",
+			"DetectableInterface.cpp.obj",
+			"EEmotionalState.cpp.obj",
+			"EEnumTest.cpp.obj",
 			"Enemy_AIController.cpp.obj",
 			"Enemy_BaseGuard.cpp.obj",
 			"Enemy_PatrolGuard.cpp.obj",
 			"Enemy_PoliceGuard.cpp.obj",
+			"Enemy_SurveillanceCamera.cpp.obj",
 			"Enemy_TESTGuard.cpp.obj",
+			"InteractiveBox.cpp.obj",
+			"Item_Coin.cpp.obj",
+			"Item_GoldBar.cpp.obj",
+			"MyClass.cpp.obj",
 			"MyFriendCharacter.cpp.obj",
-			"MyHomeworkFriendCharacter.cpp.obj",
+			"MyHomeworkFriendCharacter.cpp.obj"
+		],
+		"Module.SCC_UEAI_Lecture.3.cpp.obj": [
+			"NPCAIController.cpp.obj",
 			"PlayerDetectionHandler.cpp.obj",
-			"SCC_UEAI_LectureCharacter.cpp.obj"
+			"RVO_Character.cpp.obj",
+			"SCC_UEAI_Lecture.cpp.obj",
+			"SCC_UEAI_LectureCharacter.cpp.obj",
+			"SCC_UEAI_LectureGameMode.cpp.obj"
 		]
 	}
 }

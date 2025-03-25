@@ -79,8 +79,9 @@ void ACoolGuyAIController::Tick(float DeltaTime)
     if (StatusResetTimer <= 0 && StatusResetTimer > -1)
     {
         BB->SetValueAsEnum(SearchStateKey, (uint8)ESearchStateInternal::Idle);
-        BB->SetValueAsEnum(DetectedCountsKey, 0);
-        UE_LOG(LogTemp, Warning, TEXT("Detected COunt and Status Reset"));
+        BB->SetValueAsInt(DetectedCountsKey, 0);
+        UE_LOG(LogTemp, Warning, TEXT("Detected Count and Status Reset"));
+        StatusResetTimer = 30.0f; // 테스트를 위해 틱 시간 추가부여
     }
 }
 

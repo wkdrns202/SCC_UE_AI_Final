@@ -18,7 +18,6 @@ enum class ESearchStateInternal : uint8
     Chasing = 2
 };
 
-
 UCLASS()
 class SCC_UEAI_LECTURE_API ACoolGuyAIController : public AAIController
 {
